@@ -114,6 +114,19 @@ namespace FormApi.Client.Test
         }
         
         /// <summary>
+        /// Test CreateTemplate
+        /// </summary>
+        [Test]
+        public void CreateTemplateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //System.IO.Stream templateDocument = null;
+            //string templateName = null;
+            //var response = instance.CreateTemplate(templateDocument, templateName);
+            //Assert.IsInstanceOf<Template1> (response, "response is Template1");
+        }
+        
+        /// <summary>
         /// Test ExpireCombinedSubmission
         /// </summary>
         [Test]
@@ -197,6 +210,18 @@ namespace FormApi.Client.Test
             //bool? includeSubmissions = null;
             //var response = instance.GetSubmissionBatch(submissionBatchId, includeSubmissions);
             //Assert.IsInstanceOf<SubmissionBatch> (response, "response is SubmissionBatch");
+        }
+        
+        /// <summary>
+        /// Test GetTemplate
+        /// </summary>
+        [Test]
+        public void GetTemplateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string templateId = null;
+            //var response = instance.GetTemplate(templateId);
+            //Assert.IsInstanceOf<Template> (response, "response is Template");
         }
         
         /// <summary>

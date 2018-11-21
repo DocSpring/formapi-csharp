@@ -111,6 +111,29 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of CreateSubmissionDataRequestTokenResponse</returns>
         ApiResponse<CreateSubmissionDataRequestTokenResponse> CreateDataRequestTokenWithHttpInfo (string dataRequestId);
         /// <summary>
+        /// Upload a new PDF template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>Template1</returns>
+        Template1 CreateTemplate (System.IO.Stream templateDocument, string templateName);
+
+        /// <summary>
+        /// Upload a new PDF template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>ApiResponse of Template1</returns>
+        ApiResponse<Template1> CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        /// <summary>
         /// Expire a combined submission
         /// </summary>
         /// <remarks>
@@ -261,6 +284,27 @@ namespace FormApi.Client.Api
         /// <param name="includeSubmissions"> (optional)</param>
         /// <returns>ApiResponse of SubmissionBatch</returns>
         ApiResponse<SubmissionBatch> GetSubmissionBatchWithHttpInfo (string submissionBatchId, bool? includeSubmissions = null);
+        /// <summary>
+        /// Check the status of an uploaded template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Template</returns>
+        Template GetTemplate (string templateId);
+
+        /// <summary>
+        /// Check the status of an uploaded template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>ApiResponse of Template</returns>
+        ApiResponse<Template> GetTemplateWithHttpInfo (string templateId);
         /// <summary>
         /// Get a list of all templates
         /// </summary>
@@ -415,6 +459,29 @@ namespace FormApi.Client.Api
         /// <returns>Task of ApiResponse (CreateSubmissionDataRequestTokenResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateSubmissionDataRequestTokenResponse>> CreateDataRequestTokenAsyncWithHttpInfo (string dataRequestId);
         /// <summary>
+        /// Upload a new PDF template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>Task of Template1</returns>
+        System.Threading.Tasks.Task<Template1> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName);
+
+        /// <summary>
+        /// Upload a new PDF template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>Task of ApiResponse (Template1)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Template1>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        /// <summary>
         /// Expire a combined submission
         /// </summary>
         /// <remarks>
@@ -565,6 +632,27 @@ namespace FormApi.Client.Api
         /// <param name="includeSubmissions"> (optional)</param>
         /// <returns>Task of ApiResponse (SubmissionBatch)</returns>
         System.Threading.Tasks.Task<ApiResponse<SubmissionBatch>> GetSubmissionBatchAsyncWithHttpInfo (string submissionBatchId, bool? includeSubmissions = null);
+        /// <summary>
+        /// Check the status of an uploaded template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of Template</returns>
+        System.Threading.Tasks.Task<Template> GetTemplateAsync (string templateId);
+
+        /// <summary>
+        /// Check the status of an uploaded template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of ApiResponse (Template)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Template>> GetTemplateAsyncWithHttpInfo (string templateId);
         /// <summary>
         /// Get a list of all templates
         /// </summary>
@@ -1368,6 +1456,165 @@ namespace FormApi.Client.Api
             return new ApiResponse<CreateSubmissionDataRequestTokenResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CreateSubmissionDataRequestTokenResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateSubmissionDataRequestTokenResponse)));
+        }
+
+        /// <summary>
+        /// Upload a new PDF template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>Template1</returns>
+        public Template1 CreateTemplate (System.IO.Stream templateDocument, string templateName)
+        {
+             ApiResponse<Template1> localVarResponse = CreateTemplateWithHttpInfo(templateDocument, templateName);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload a new PDF template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>ApiResponse of Template1</returns>
+        public ApiResponse< Template1 > CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName)
+        {
+            // verify the required parameter 'templateDocument' is set
+            if (templateDocument == null)
+                throw new ApiException(400, "Missing required parameter 'templateDocument' when calling PDFApi->CreateTemplate");
+            // verify the required parameter 'templateName' is set
+            if (templateName == null)
+                throw new ApiException(400, "Missing required parameter 'templateName' when calling PDFApi->CreateTemplate");
+
+            var localVarPath = "/templates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateDocument != null) localVarFileParams.Add("template[document]", this.Configuration.ApiClient.ParameterToFile("template[document]", templateDocument));
+            if (templateName != null) localVarFormParams.Add("template[name]", this.Configuration.ApiClient.ParameterToString(templateName)); // form parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Template1>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Template1) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template1)));
+        }
+
+        /// <summary>
+        /// Upload a new PDF template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>Task of Template1</returns>
+        public async System.Threading.Tasks.Task<Template1> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName)
+        {
+             ApiResponse<Template1> localVarResponse = await CreateTemplateAsyncWithHttpInfo(templateDocument, templateName);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Upload a new PDF template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateDocument"></param>
+        /// <param name="templateName"></param>
+        /// <returns>Task of ApiResponse (Template1)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Template1>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName)
+        {
+            // verify the required parameter 'templateDocument' is set
+            if (templateDocument == null)
+                throw new ApiException(400, "Missing required parameter 'templateDocument' when calling PDFApi->CreateTemplate");
+            // verify the required parameter 'templateName' is set
+            if (templateName == null)
+                throw new ApiException(400, "Missing required parameter 'templateName' when calling PDFApi->CreateTemplate");
+
+            var localVarPath = "/templates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateDocument != null) localVarFileParams.Add("template[document]", this.Configuration.ApiClient.ParameterToFile("template[document]", templateDocument));
+            if (templateName != null) localVarFormParams.Add("template[name]", this.Configuration.ApiClient.ParameterToString(templateName)); // form parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Template1>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Template1) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template1)));
         }
 
         /// <summary>
@@ -2417,6 +2664,151 @@ namespace FormApi.Client.Api
             return new ApiResponse<SubmissionBatch>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SubmissionBatch) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SubmissionBatch)));
+        }
+
+        /// <summary>
+        /// Check the status of an uploaded template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Template</returns>
+        public Template GetTemplate (string templateId)
+        {
+             ApiResponse<Template> localVarResponse = GetTemplateWithHttpInfo(templateId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check the status of an uploaded template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>ApiResponse of Template</returns>
+        public ApiResponse< Template > GetTemplateWithHttpInfo (string templateId)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->GetTemplate");
+
+            var localVarPath = "/templates/{template_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Template>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Template) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template)));
+        }
+
+        /// <summary>
+        /// Check the status of an uploaded template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of Template</returns>
+        public async System.Threading.Tasks.Task<Template> GetTemplateAsync (string templateId)
+        {
+             ApiResponse<Template> localVarResponse = await GetTemplateAsyncWithHttpInfo(templateId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Check the status of an uploaded template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of ApiResponse (Template)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Template>> GetTemplateAsyncWithHttpInfo (string templateId)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->GetTemplate");
+
+            var localVarPath = "/templates/{template_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Template>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Template) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template)));
         }
 
         /// <summary>

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**BatchGeneratePdfs**](PDFApi.md#batchgeneratepdfs) | **POST** /submissions/batches | Generates multiple PDFs
 [**CombineSubmissions**](PDFApi.md#combinesubmissions) | **POST** /combined_submissions | Merge generated PDFs together
 [**CreateDataRequestToken**](PDFApi.md#createdatarequesttoken) | **POST** /data_requests/{data_request_id}/tokens | Creates a new data request token for form authentication
+[**CreateTemplate**](PDFApi.md#createtemplate) | **POST** /templates | Upload a new PDF template
 [**ExpireCombinedSubmission**](PDFApi.md#expirecombinedsubmission) | **DELETE** /combined_submissions/{combined_submission_id} | Expire a combined submission
 [**ExpireSubmission**](PDFApi.md#expiresubmission) | **DELETE** /submissions/{submission_id} | Expire a PDF submission
 [**GeneratePDF**](PDFApi.md#generatepdf) | **POST** /templates/{template_id}/submissions | Generates a new PDF
@@ -15,6 +16,7 @@ Method | HTTP request | Description
 [**GetDataRequest**](PDFApi.md#getdatarequest) | **GET** /data_requests/{data_request_id} | Look up a submission data request
 [**GetSubmission**](PDFApi.md#getsubmission) | **GET** /submissions/{submission_id} | Check the status of a PDF
 [**GetSubmissionBatch**](PDFApi.md#getsubmissionbatch) | **GET** /submissions/batches/{submission_batch_id} | Check the status of a submission batch job
+[**GetTemplate**](PDFApi.md#gettemplate) | **GET** /templates/{template_id} | Check the status of an uploaded template
 [**GetTemplates**](PDFApi.md#gettemplates) | **GET** /templates | Get a list of all templates
 [**TestAuthentication**](PDFApi.md#testauthentication) | **GET** /authentication | Test Authentication
 [**UpdateDataRequest**](PDFApi.md#updatedatarequest) | **PUT** /data_requests/{data_request_id} | Update a submission data request
@@ -270,6 +272,71 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createtemplate"></a>
+# **CreateTemplate**
+> Template1 CreateTemplate (System.IO.Stream templateDocument, string templateName)
+
+Upload a new PDF template
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class CreateTemplateExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var templateDocument = BINARY_DATA_HERE;  // System.IO.Stream | 
+            var templateName = templateName_example;  // string | 
+
+            try
+            {
+                // Upload a new PDF template
+                Template1 result = apiInstance.CreateTemplate(templateDocument, templateName);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.CreateTemplate: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateDocument** | **System.IO.Stream**|  | 
+ **templateName** | **string**|  | 
+
+### Return type
+
+[**Template1**](Template1.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -707,6 +774,69 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SubmissionBatch**](SubmissionBatch.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="gettemplate"></a>
+# **GetTemplate**
+> Template GetTemplate (string templateId)
+
+Check the status of an uploaded template
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class GetTemplateExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var templateId = tpl_000000000000000001;  // string | 
+
+            try
+            {
+                // Check the status of an uploaded template
+                Template result = apiInstance.GetTemplate(templateId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.GetTemplate: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **string**|  | 
+
+### Return type
+
+[**Template**](Template.md)
 
 ### Authorization
 
