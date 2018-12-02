@@ -225,6 +225,18 @@ namespace FormApi.Client.Test
         }
         
         /// <summary>
+        /// Test GetTemplateSchema
+        /// </summary>
+        [Test]
+        public void GetTemplateSchemaTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string templateId = null;
+            //var response = instance.GetTemplateSchema(templateId);
+            //Assert.IsInstanceOf<Dictionary<string, Object>> (response, "response is Dictionary<string, Object>");
+        }
+        
+        /// <summary>
         /// Test GetTemplates
         /// </summary>
         [Test]

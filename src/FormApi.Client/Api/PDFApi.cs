@@ -306,6 +306,27 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of Template</returns>
         ApiResponse<Template> GetTemplateWithHttpInfo (string templateId);
         /// <summary>
+        /// Fetch the JSON schema for a template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Dictionary&lt;string, Object&gt;</returns>
+        Dictionary<string, Object> GetTemplateSchema (string templateId);
+
+        /// <summary>
+        /// Fetch the JSON schema for a template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
+        ApiResponse<Dictionary<string, Object>> GetTemplateSchemaWithHttpInfo (string templateId);
+        /// <summary>
         /// Get a list of all templates
         /// </summary>
         /// <remarks>
@@ -653,6 +674,27 @@ namespace FormApi.Client.Api
         /// <param name="templateId"></param>
         /// <returns>Task of ApiResponse (Template)</returns>
         System.Threading.Tasks.Task<ApiResponse<Template>> GetTemplateAsyncWithHttpInfo (string templateId);
+        /// <summary>
+        /// Fetch the JSON schema for a template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of Dictionary&lt;string, Object&gt;</returns>
+        System.Threading.Tasks.Task<Dictionary<string, Object>> GetTemplateSchemaAsync (string templateId);
+
+        /// <summary>
+        /// Fetch the JSON schema for a template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetTemplateSchemaAsyncWithHttpInfo (string templateId);
         /// <summary>
         /// Get a list of all templates
         /// </summary>
@@ -2809,6 +2851,151 @@ namespace FormApi.Client.Api
             return new ApiResponse<Template>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Template) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template)));
+        }
+
+        /// <summary>
+        /// Fetch the JSON schema for a template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Dictionary&lt;string, Object&gt;</returns>
+        public Dictionary<string, Object> GetTemplateSchema (string templateId)
+        {
+             ApiResponse<Dictionary<string, Object>> localVarResponse = GetTemplateSchemaWithHttpInfo(templateId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fetch the JSON schema for a template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
+        public ApiResponse< Dictionary<string, Object> > GetTemplateSchemaWithHttpInfo (string templateId)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->GetTemplateSchema");
+
+            var localVarPath = "/templates/{template_id}/schema";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetTemplateSchema", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Dictionary<string, Object>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Dictionary<string, Object>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, Object>)));
+        }
+
+        /// <summary>
+        /// Fetch the JSON schema for a template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of Dictionary&lt;string, Object&gt;</returns>
+        public async System.Threading.Tasks.Task<Dictionary<string, Object>> GetTemplateSchemaAsync (string templateId)
+        {
+             ApiResponse<Dictionary<string, Object>> localVarResponse = await GetTemplateSchemaAsyncWithHttpInfo(templateId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Fetch the JSON schema for a template 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetTemplateSchemaAsyncWithHttpInfo (string templateId)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->GetTemplateSchema");
+
+            var localVarPath = "/templates/{template_id}/schema";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetTemplateSchema", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Dictionary<string, Object>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Dictionary<string, Object>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, Object>)));
         }
 
         /// <summary>

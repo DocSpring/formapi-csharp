@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**GetSubmission**](PDFApi.md#getsubmission) | **GET** /submissions/{submission_id} | Check the status of a PDF
 [**GetSubmissionBatch**](PDFApi.md#getsubmissionbatch) | **GET** /submissions/batches/{submission_batch_id} | Check the status of a submission batch job
 [**GetTemplate**](PDFApi.md#gettemplate) | **GET** /templates/{template_id} | Check the status of an uploaded template
+[**GetTemplateSchema**](PDFApi.md#gettemplateschema) | **GET** /templates/{template_id}/schema | Fetch the JSON schema for a template
 [**GetTemplates**](PDFApi.md#gettemplates) | **GET** /templates | Get a list of all templates
 [**TestAuthentication**](PDFApi.md#testauthentication) | **GET** /authentication | Test Authentication
 [**UpdateDataRequest**](PDFApi.md#updatedatarequest) | **PUT** /data_requests/{data_request_id} | Update a submission data request
@@ -837,6 +838,69 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Template**](Template.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="gettemplateschema"></a>
+# **GetTemplateSchema**
+> Dictionary<string, Object> GetTemplateSchema (string templateId)
+
+Fetch the JSON schema for a template
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class GetTemplateSchemaExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var templateId = tpl_000000000000000001;  // string | 
+
+            try
+            {
+                // Fetch the JSON schema for a template
+                Dictionary&lt;string, Object&gt; result = apiInstance.GetTemplateSchema(templateId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.GetTemplateSchema: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **string**|  | 
+
+### Return type
+
+**Dictionary<string, Object>**
 
 ### Authorization
 

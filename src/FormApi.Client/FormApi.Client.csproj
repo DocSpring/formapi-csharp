@@ -12,7 +12,7 @@ OpenAPI spec version: v1
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{417F3810-D56A-4B93-842A-70AA70F3001A}</ProjectGuid>
+    <ProjectGuid>{A52EA624-3582-4C8A-A689-54F4C8BFA6FD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FormApi.Client</RootNamespace>

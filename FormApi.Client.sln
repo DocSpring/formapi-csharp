@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApi.Client", "src\FormApi.Client\FormApi.Client.csproj", "{417F3810-D56A-4B93-842A-70AA70F3001A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApi.Client", "src\FormApi.Client\FormApi.Client.csproj", "{A52EA624-3582-4C8A-A689-54F4C8BFA6FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApi.Client.Test", "src\FormApi.Client.Test\FormApi.Client.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{417F3810-D56A-4B93-842A-70AA70F3001A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{417F3810-D56A-4B93-842A-70AA70F3001A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{417F3810-D56A-4B93-842A-70AA70F3001A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{417F3810-D56A-4B93-842A-70AA70F3001A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A52EA624-3582-4C8A-A689-54F4C8BFA6FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A52EA624-3582-4C8A-A689-54F4C8BFA6FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A52EA624-3582-4C8A-A689-54F4C8BFA6FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A52EA624-3582-4C8A-A689-54F4C8BFA6FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
