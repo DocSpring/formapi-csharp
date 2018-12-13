@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 <a name="createtemplate"></a>
 # **CreateTemplate**
-> Template1 CreateTemplate (System.IO.Stream templateDocument, string templateName)
+> PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName)
 
 Upload a new PDF template
 
@@ -308,7 +308,7 @@ namespace Example
             try
             {
                 // Upload a new PDF template
-                Template1 result = apiInstance.CreateTemplate(templateDocument, templateName);
+                PendingTemplate result = apiInstance.CreateTemplate(templateDocument, templateName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -329,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Template1**](Template1.md)
+[**PendingTemplate**](PendingTemplate.md)
 
 ### Authorization
 

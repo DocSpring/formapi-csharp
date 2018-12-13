@@ -9,7 +9,6 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -350,7 +349,7 @@ namespace FormApi.Client.Test
             var templateName = "Test PDF Template from C Sharp";
             var template = instance.CreateTemplate(templateDocument, templateName);
 
-            Assert.IsInstanceOf<Template1> (template, "template is Template");
+            Assert.IsInstanceOf<PendingTemplate> (template, "template is PendingTemplate");
             StringAssert.StartsWith("tpl_", template.Id);
             Assert.AreEqual(template.Name, "Test PDF Template from C Sharp");
         }

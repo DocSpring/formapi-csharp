@@ -122,6 +122,14 @@ namespace FormApi.Client.Test
         {
             // TODO unit test for the property 'State'
         }
+        /// <summary>
+        /// Test the property 'Actions'
+        /// </summary>
+        [Test]
+        public void ActionsTest()
+        {
+            // TODO unit test for the property 'Actions'
+        }
 
     }
 

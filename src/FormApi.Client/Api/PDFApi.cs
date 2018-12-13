@@ -119,8 +119,8 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>Template1</returns>
-        Template1 CreateTemplate (System.IO.Stream templateDocument, string templateName);
+        /// <returns>PendingTemplate</returns>
+        PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName);
 
         /// <summary>
         /// Upload a new PDF template
@@ -131,8 +131,8 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>ApiResponse of Template1</returns>
-        ApiResponse<Template1> CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        /// <returns>ApiResponse of PendingTemplate</returns>
+        ApiResponse<PendingTemplate> CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName);
         /// <summary>
         /// Expire a combined submission
         /// </summary>
@@ -488,8 +488,8 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>Task of Template1</returns>
-        System.Threading.Tasks.Task<Template1> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName);
+        /// <returns>Task of PendingTemplate</returns>
+        System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName);
 
         /// <summary>
         /// Upload a new PDF template
@@ -500,8 +500,8 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>Task of ApiResponse (Template1)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Template1>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        /// <returns>Task of ApiResponse (PendingTemplate)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName);
         /// <summary>
         /// Expire a combined submission
         /// </summary>
@@ -1506,10 +1506,10 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>Template1</returns>
-        public Template1 CreateTemplate (System.IO.Stream templateDocument, string templateName)
+        /// <returns>PendingTemplate</returns>
+        public PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName)
         {
-             ApiResponse<Template1> localVarResponse = CreateTemplateWithHttpInfo(templateDocument, templateName);
+             ApiResponse<PendingTemplate> localVarResponse = CreateTemplateWithHttpInfo(templateDocument, templateName);
              return localVarResponse.Data;
         }
 
@@ -1519,8 +1519,8 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>ApiResponse of Template1</returns>
-        public ApiResponse< Template1 > CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName)
+        /// <returns>ApiResponse of PendingTemplate</returns>
+        public ApiResponse< PendingTemplate > CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName)
         {
             // verify the required parameter 'templateDocument' is set
             if (templateDocument == null)
@@ -1574,9 +1574,9 @@ namespace FormApi.Client.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Template1>(localVarStatusCode,
+            return new ApiResponse<PendingTemplate>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Template1) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template1)));
+                (PendingTemplate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PendingTemplate)));
         }
 
         /// <summary>
@@ -1585,10 +1585,10 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>Task of Template1</returns>
-        public async System.Threading.Tasks.Task<Template1> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName)
+        /// <returns>Task of PendingTemplate</returns>
+        public async System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName)
         {
-             ApiResponse<Template1> localVarResponse = await CreateTemplateAsyncWithHttpInfo(templateDocument, templateName);
+             ApiResponse<PendingTemplate> localVarResponse = await CreateTemplateAsyncWithHttpInfo(templateDocument, templateName);
              return localVarResponse.Data;
 
         }
@@ -1599,8 +1599,8 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
-        /// <returns>Task of ApiResponse (Template1)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Template1>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName)
+        /// <returns>Task of ApiResponse (PendingTemplate)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName)
         {
             // verify the required parameter 'templateDocument' is set
             if (templateDocument == null)
@@ -1654,9 +1654,9 @@ namespace FormApi.Client.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Template1>(localVarStatusCode,
+            return new ApiResponse<PendingTemplate>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Template1) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template1)));
+                (PendingTemplate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PendingTemplate)));
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-# FormApi.Client.Model.Template1
+# FormApi.Client.Model.PendingTemplate
 ## Properties
 
 Name | Type | Description | Notes

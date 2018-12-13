@@ -123,7 +123,7 @@ namespace FormApi.Client.Test
             //System.IO.Stream templateDocument = null;
             //string templateName = null;
             //var response = instance.CreateTemplate(templateDocument, templateName);
-            //Assert.IsInstanceOf<Template1> (response, "response is Template1");
+            //Assert.IsInstanceOf<PendingTemplate> (response, "response is PendingTemplate");
         }
         
         /// <summary>

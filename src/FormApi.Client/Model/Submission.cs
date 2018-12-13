@@ -103,7 +103,8 @@ namespace FormApi.Client.Model
         /// <param name="downloadUrl">downloadUrl.</param>
         /// <param name="batchId">batchId.</param>
         /// <param name="dataRequests">dataRequests.</param>
-        public Submission(string id = default(string), bool? test = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>))
+        /// <param name="actions">actions.</param>
+        public Submission(string id = default(string), bool? test = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -147,6 +148,7 @@ namespace FormApi.Client.Model
             this.DownloadUrl = downloadUrl;
             this.BatchId = batchId;
             this.DataRequests = dataRequests;
+            this.Actions = actions;
         }
         
         /// <summary>
@@ -205,6 +207,12 @@ namespace FormApi.Client.Model
         public List<SubmissionDataRequest> DataRequests { get; set; }
 
         /// <summary>
+        /// Gets or Sets Actions
+        /// </summary>
+        [DataMember(Name="actions", EmitDefaultValue=false)]
+        public List<SubmissionAction> Actions { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -222,6 +230,7 @@ namespace FormApi.Client.Model
             sb.Append("  DownloadUrl: ").Append(DownloadUrl).Append("\n");
             sb.Append("  BatchId: ").Append(BatchId).Append("\n");
             sb.Append("  DataRequests: ").Append(DataRequests).Append("\n");
+            sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -305,6 +314,11 @@ namespace FormApi.Client.Model
                     this.DataRequests == input.DataRequests ||
                     this.DataRequests != null &&
                     this.DataRequests.SequenceEqual(input.DataRequests)
+                ) && 
+                (
+                    this.Actions == input.Actions ||
+                    this.Actions != null &&
+                    this.Actions.SequenceEqual(input.Actions)
                 );
         }
 
@@ -337,6 +351,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.BatchId.GetHashCode();
                 if (this.DataRequests != null)
                     hashCode = hashCode * 59 + this.DataRequests.GetHashCode();
+                if (this.Actions != null)
+                    hashCode = hashCode * 59 + this.Actions.GetHashCode();
                 return hashCode;
             }
         }

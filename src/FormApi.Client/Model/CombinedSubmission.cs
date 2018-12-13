@@ -71,7 +71,8 @@ namespace FormApi.Client.Model
         /// <param name="submissionIds">submissionIds.</param>
         /// <param name="id">id.</param>
         /// <param name="state">state.</param>
-        public CombinedSubmission(Object metadata = default(Object), bool? expired = default(bool?), string expiresAt = default(string), string downloadUrl = default(string), List<string> submissionIds = default(List<string>), string id = default(string), StateEnum? state = default(StateEnum?))
+        /// <param name="actions">actions.</param>
+        public CombinedSubmission(Object metadata = default(Object), bool? expired = default(bool?), string expiresAt = default(string), string downloadUrl = default(string), List<string> submissionIds = default(List<string>), string id = default(string), StateEnum? state = default(StateEnum?), List<CombinedSubmissionAction> actions = default(List<CombinedSubmissionAction>))
         {
             this.Metadata = metadata;
             this.Expired = expired;
@@ -80,6 +81,7 @@ namespace FormApi.Client.Model
             this.SubmissionIds = submissionIds;
             this.Id = id;
             this.State = state;
+            this.Actions = actions;
         }
         
         /// <summary>
@@ -120,6 +122,12 @@ namespace FormApi.Client.Model
 
 
         /// <summary>
+        /// Gets or Sets Actions
+        /// </summary>
+        [DataMember(Name="actions", EmitDefaultValue=false)]
+        public List<CombinedSubmissionAction> Actions { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -134,6 +142,7 @@ namespace FormApi.Client.Model
             sb.Append("  SubmissionIds: ").Append(SubmissionIds).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -202,6 +211,11 @@ namespace FormApi.Client.Model
                     this.State == input.State ||
                     (this.State != null &&
                     this.State.Equals(input.State))
+                ) && 
+                (
+                    this.Actions == input.Actions ||
+                    this.Actions != null &&
+                    this.Actions.SequenceEqual(input.Actions)
                 );
         }
 
@@ -228,6 +242,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.State != null)
                     hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.Actions != null)
+                    hashCode = hashCode * 59 + this.Actions.GetHashCode();
                 return hashCode;
             }
         }

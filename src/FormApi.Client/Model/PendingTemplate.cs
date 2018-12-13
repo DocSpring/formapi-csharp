@@ -25,10 +25,10 @@ using OpenAPIDateConverter = FormApi.Client.Client.OpenAPIDateConverter;
 namespace FormApi.Client.Model
 {
     /// <summary>
-    /// Template1
+    /// PendingTemplate
     /// </summary>
     [DataContract]
-    public partial class Template1 :  IEquatable<Template1>, IValidatableObject
+    public partial class PendingTemplate :  IEquatable<PendingTemplate>, IValidatableObject
     {
         /// <summary>
         /// Defines ExpirationInterval
@@ -62,7 +62,7 @@ namespace FormApi.Client.Model
         [DataMember(Name="expiration_interval", EmitDefaultValue=false)]
         public ExpirationIntervalEnum? ExpirationInterval { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Template1" /> class.
+        /// Initializes a new instance of the <see cref="PendingTemplate" /> class.
         /// </summary>
         /// <param name="expirationInterval">expirationInterval.</param>
         /// <param name="webhookUrl">webhookUrl.</param>
@@ -77,7 +77,7 @@ namespace FormApi.Client.Model
         /// <param name="templateType">templateType.</param>
         /// <param name="id">id.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public Template1(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? blockchainTimestampVerification = default(bool?), bool? publicWebForm = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), string redirectUrl = default(string))
+        public PendingTemplate(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? blockchainTimestampVerification = default(bool?), bool? publicWebForm = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), string redirectUrl = default(string))
         {
             this.ExpirationInterval = expirationInterval;
             this.WebhookUrl = webhookUrl;
@@ -174,7 +174,7 @@ namespace FormApi.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Template1 {\n");
+            sb.Append("class PendingTemplate {\n");
             sb.Append("  ExpirationInterval: ").Append(ExpirationInterval).Append("\n");
             sb.Append("  WebhookUrl: ").Append(WebhookUrl).Append("\n");
             sb.Append("  ExpireAfter: ").Append(ExpireAfter).Append("\n");
@@ -208,15 +208,15 @@ namespace FormApi.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Template1);
+            return this.Equals(input as PendingTemplate);
         }
 
         /// <summary>
-        /// Returns true if Template1 instances are equal
+        /// Returns true if PendingTemplate instances are equal
         /// </summary>
-        /// <param name="input">Instance of Template1 to be compared</param>
+        /// <param name="input">Instance of PendingTemplate to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Template1 input)
+        public bool Equals(PendingTemplate input)
         {
             if (input == null)
                 return false;
