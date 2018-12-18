@@ -53,12 +53,12 @@ namespace FormApi.Client.Client
         public ApiClient()
         {
             Configuration = FormApi.Client.Client.Configuration.Default;
-            RestClient = new RestClient("https://app.formapi.io/api/v1");
+            RestClient = new RestClient("https://api.formapi.io/api/v1");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (https://app.formapi.io/api/v1).
+        /// with default base path (https://api.formapi.io/api/v1).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config)
@@ -73,7 +73,7 @@ namespace FormApi.Client.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://app.formapi.io/api/v1")
+        public ApiClient(String basePath = "https://api.formapi.io/api/v1")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
