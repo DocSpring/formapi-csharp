@@ -1,4 +1,4 @@
-# FormApi.Client.Model.CreateSubmissionData
+# FormApi.Client.Model.SubmissionData
 ## Properties
 
 Name | Type | Description | Notes

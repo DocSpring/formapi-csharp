@@ -91,6 +91,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'ExpiresAt'
         }
         /// <summary>
+        /// Test the property 'SourcePdfs'
+        /// </summary>
+        [Test]
+        public void SourcePdfsTest()
+        {
+            // TODO unit test for the property 'SourcePdfs'
+        }
+        /// <summary>
         /// Test the property 'DownloadUrl'
         /// </summary>
         [Test]

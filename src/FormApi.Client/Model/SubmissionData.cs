@@ -25,18 +25,18 @@ using OpenAPIDateConverter = FormApi.Client.Client.OpenAPIDateConverter;
 namespace FormApi.Client.Model
 {
     /// <summary>
-    /// CreateSubmissionData
+    /// SubmissionData
     /// </summary>
     [DataContract]
-    public partial class CreateSubmissionData :  IEquatable<CreateSubmissionData>, IValidatableObject
+    public partial class SubmissionData :  IEquatable<SubmissionData>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSubmissionData" /> class.
+        /// Initializes a new instance of the <see cref="SubmissionData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateSubmissionData() { }
+        protected SubmissionData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSubmissionData" /> class.
+        /// Initializes a new instance of the <see cref="SubmissionData" /> class.
         /// </summary>
         /// <param name="test">test.</param>
         /// <param name="data">data (required).</param>
@@ -44,12 +44,12 @@ namespace FormApi.Client.Model
         /// <param name="css">css.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="dataRequests">dataRequests.</param>
-        public CreateSubmissionData(bool? test = default(bool?), Object data = default(Object), string html = default(string), string css = default(string), Object metadata = default(Object), List<CreateSubmissionDataRequestData> dataRequests = default(List<CreateSubmissionDataRequestData>))
+        public SubmissionData(bool? test = default(bool?), Object data = default(Object), string html = default(string), string css = default(string), Object metadata = default(Object), List<CreateSubmissionDataRequestData> dataRequests = default(List<CreateSubmissionDataRequestData>))
         {
             // to ensure "data" is required (not null)
             if (data == null)
             {
-                throw new InvalidDataException("data is a required property for CreateSubmissionData and cannot be null");
+                throw new InvalidDataException("data is a required property for SubmissionData and cannot be null");
             }
             else
             {
@@ -105,7 +105,7 @@ namespace FormApi.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreateSubmissionData {\n");
+            sb.Append("class SubmissionData {\n");
             sb.Append("  Test: ").Append(Test).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Html: ").Append(Html).Append("\n");
@@ -132,15 +132,15 @@ namespace FormApi.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreateSubmissionData);
+            return this.Equals(input as SubmissionData);
         }
 
         /// <summary>
-        /// Returns true if CreateSubmissionData instances are equal
+        /// Returns true if SubmissionData instances are equal
         /// </summary>
-        /// <param name="input">Instance of CreateSubmissionData to be compared</param>
+        /// <param name="input">Instance of SubmissionData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CreateSubmissionData input)
+        public bool Equals(SubmissionData input)
         {
             if (input == null)
                 return false;

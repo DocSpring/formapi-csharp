@@ -72,8 +72,8 @@ namespace FormApi.Client.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string templateId = null;
-            //List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1 = null;
-            //var response = instance.BatchGeneratePdfV1(templateId, createSubmissionDataBatchV1);
+            //List<Object> requestBody = null;
+            //var response = instance.BatchGeneratePdfV1(templateId, requestBody);
             //Assert.IsInstanceOf<List<CreateSubmissionResponse>> (response, "response is List<CreateSubmissionResponse>");
         }
         
@@ -90,6 +90,18 @@ namespace FormApi.Client.Test
         }
         
         /// <summary>
+        /// Test CombinePdfs
+        /// </summary>
+        [Test]
+        public void CombinePdfsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CombinePdfsData combinePdfsData = null;
+            //var response = instance.CombinePdfs(combinePdfsData);
+            //Assert.IsInstanceOf<CreateCombinedSubmissionResponse> (response, "response is CreateCombinedSubmissionResponse");
+        }
+        
+        /// <summary>
         /// Test CombineSubmissions
         /// </summary>
         [Test]
@@ -99,6 +111,18 @@ namespace FormApi.Client.Test
             //CombinedSubmissionData combinedSubmissionData = null;
             //var response = instance.CombineSubmissions(combinedSubmissionData);
             //Assert.IsInstanceOf<CreateCombinedSubmissionResponse> (response, "response is CreateCombinedSubmissionResponse");
+        }
+        
+        /// <summary>
+        /// Test CreateCustomFileFromUpload
+        /// </summary>
+        [Test]
+        public void CreateCustomFileFromUploadTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateCustomFileData createCustomFileData = null;
+            //var response = instance.CreateCustomFileFromUpload(createCustomFileData);
+            //Assert.IsInstanceOf<CreateCustomFileResponse> (response, "response is CreateCustomFileResponse");
         }
         
         /// <summary>
@@ -123,6 +147,18 @@ namespace FormApi.Client.Test
             //System.IO.Stream templateDocument = null;
             //string templateName = null;
             //var response = instance.CreateTemplate(templateDocument, templateName);
+            //Assert.IsInstanceOf<PendingTemplate> (response, "response is PendingTemplate");
+        }
+        
+        /// <summary>
+        /// Test CreateTemplateFromUpload
+        /// </summary>
+        [Test]
+        public void CreateTemplateFromUploadTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateTemplateData createTemplateData = null;
+            //var response = instance.CreateTemplateFromUpload(createTemplateData);
             //Assert.IsInstanceOf<PendingTemplate> (response, "response is PendingTemplate");
         }
         
@@ -158,8 +194,8 @@ namespace FormApi.Client.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string templateId = null;
-            //CreateSubmissionData createSubmissionData = null;
-            //var response = instance.GeneratePDF(templateId, createSubmissionData);
+            //SubmissionData submissionData = null;
+            //var response = instance.GeneratePDF(templateId, submissionData);
             //Assert.IsInstanceOf<CreateSubmissionResponse> (response, "response is CreateSubmissionResponse");
         }
         
@@ -185,6 +221,17 @@ namespace FormApi.Client.Test
             //string dataRequestId = null;
             //var response = instance.GetDataRequest(dataRequestId);
             //Assert.IsInstanceOf<SubmissionDataRequest> (response, "response is SubmissionDataRequest");
+        }
+        
+        /// <summary>
+        /// Test GetPresignUrl
+        /// </summary>
+        [Test]
+        public void GetPresignUrlTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.GetPresignUrl();
+            //Assert.IsInstanceOf<Dictionary<string, Object>> (response, "response is Dictionary<string, Object>");
         }
         
         /// <summary>

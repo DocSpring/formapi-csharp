@@ -1,12 +1,10 @@
-# FormApi.Client.Model.SubmissionBatchData
+# FormApi.Client.Model.CustomFile
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metadata** | **Object** |  | [optional] 
-**Test** | **bool?** |  | [optional] 
-**TemplateId** | **string** |  | [optional] 
-**Submissions** | [**List&lt;SubmissionDataBatchRequest&gt;**](SubmissionDataBatchRequest.md) |  | 
+**Id** | **string** |  | [optional] 
+**Url** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

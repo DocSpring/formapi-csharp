@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **Metadata** | **Object** |  | [optional] 
 **Expired** | **bool?** |  | [optional] 
 **ExpiresAt** | **string** |  | [optional] 
+**SourcePdfs** | **List&lt;Object&gt;** |  | [optional] 
 **DownloadUrl** | **string** |  | [optional] 
 **SubmissionIds** | **List&lt;string&gt;** |  | [optional] 
 **Id** | **string** |  | [optional] 

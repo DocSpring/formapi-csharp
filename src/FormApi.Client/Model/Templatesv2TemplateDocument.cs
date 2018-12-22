@@ -25,62 +25,55 @@ using OpenAPIDateConverter = FormApi.Client.Client.OpenAPIDateConverter;
 namespace FormApi.Client.Model
 {
     /// <summary>
-    /// SubmissionBatchData
+    /// Templatesv2TemplateDocument
     /// </summary>
     [DataContract]
-    public partial class SubmissionBatchData :  IEquatable<SubmissionBatchData>, IValidatableObject
+    public partial class Templatesv2TemplateDocument :  IEquatable<Templatesv2TemplateDocument>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubmissionBatchData" /> class.
+        /// Defines Storage
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SubmissionBatchData() { }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StorageEnum
+        {
+            /// <summary>
+            /// Enum Cache for value: cache
+            /// </summary>
+            [EnumMember(Value = "cache")]
+            Cache = 1
+
+        }
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubmissionBatchData" /> class.
+        /// Gets or Sets Storage
+        /// </summary>
+        [DataMember(Name="storage", EmitDefaultValue=false)]
+        public StorageEnum? Storage { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Templatesv2TemplateDocument" /> class.
         /// </summary>
         /// <param name="metadata">metadata.</param>
-        /// <param name="test">test.</param>
-        /// <param name="templateId">templateId.</param>
-        /// <param name="submissions">submissions (required).</param>
-        public SubmissionBatchData(Object metadata = default(Object), bool? test = default(bool?), string templateId = default(string), List<SubmissionDataBatchRequest> submissions = default(List<SubmissionDataBatchRequest>))
+        /// <param name="id">id.</param>
+        /// <param name="storage">storage.</param>
+        public Templatesv2TemplateDocument(Templatesv2TemplateDocumentMetadata metadata = default(Templatesv2TemplateDocumentMetadata), string id = default(string), StorageEnum? storage = default(StorageEnum?))
         {
-            // to ensure "submissions" is required (not null)
-            if (submissions == null)
-            {
-                throw new InvalidDataException("submissions is a required property for SubmissionBatchData and cannot be null");
-            }
-            else
-            {
-                this.Submissions = submissions;
-            }
             this.Metadata = metadata;
-            this.Test = test;
-            this.TemplateId = templateId;
+            this.Id = id;
+            this.Storage = storage;
         }
         
         /// <summary>
         /// Gets or Sets Metadata
         /// </summary>
         [DataMember(Name="metadata", EmitDefaultValue=false)]
-        public Object Metadata { get; set; }
+        public Templatesv2TemplateDocumentMetadata Metadata { get; set; }
 
         /// <summary>
-        /// Gets or Sets Test
+        /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name="test", EmitDefaultValue=false)]
-        public bool? Test { get; set; }
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
 
-        /// <summary>
-        /// Gets or Sets TemplateId
-        /// </summary>
-        [DataMember(Name="template_id", EmitDefaultValue=false)]
-        public string TemplateId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Submissions
-        /// </summary>
-        [DataMember(Name="submissions", EmitDefaultValue=false)]
-        public List<SubmissionDataBatchRequest> Submissions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,11 +82,10 @@ namespace FormApi.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SubmissionBatchData {\n");
+            sb.Append("class Templatesv2TemplateDocument {\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
-            sb.Append("  Test: ").Append(Test).Append("\n");
-            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
-            sb.Append("  Submissions: ").Append(Submissions).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Storage: ").Append(Storage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -114,15 +106,15 @@ namespace FormApi.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SubmissionBatchData);
+            return this.Equals(input as Templatesv2TemplateDocument);
         }
 
         /// <summary>
-        /// Returns true if SubmissionBatchData instances are equal
+        /// Returns true if Templatesv2TemplateDocument instances are equal
         /// </summary>
-        /// <param name="input">Instance of SubmissionBatchData to be compared</param>
+        /// <param name="input">Instance of Templatesv2TemplateDocument to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SubmissionBatchData input)
+        public bool Equals(Templatesv2TemplateDocument input)
         {
             if (input == null)
                 return false;
@@ -134,19 +126,14 @@ namespace FormApi.Client.Model
                     this.Metadata.Equals(input.Metadata))
                 ) && 
                 (
-                    this.Test == input.Test ||
-                    (this.Test != null &&
-                    this.Test.Equals(input.Test))
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.TemplateId == input.TemplateId ||
-                    (this.TemplateId != null &&
-                    this.TemplateId.Equals(input.TemplateId))
-                ) && 
-                (
-                    this.Submissions == input.Submissions ||
-                    this.Submissions != null &&
-                    this.Submissions.SequenceEqual(input.Submissions)
+                    this.Storage == input.Storage ||
+                    (this.Storage != null &&
+                    this.Storage.Equals(input.Storage))
                 );
         }
 
@@ -161,12 +148,10 @@ namespace FormApi.Client.Model
                 int hashCode = 41;
                 if (this.Metadata != null)
                     hashCode = hashCode * 59 + this.Metadata.GetHashCode();
-                if (this.Test != null)
-                    hashCode = hashCode * 59 + this.Test.GetHashCode();
-                if (this.TemplateId != null)
-                    hashCode = hashCode * 59 + this.TemplateId.GetHashCode();
-                if (this.Submissions != null)
-                    hashCode = hashCode * 59 + this.Submissions.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Storage != null)
+                    hashCode = hashCode * 59 + this.Storage.GetHashCode();
                 return hashCode;
             }
         }

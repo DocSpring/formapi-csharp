@@ -1,12 +1,11 @@
-# FormApi.Client.Model.SubmissionBatchData
+# FormApi.Client.Model.CreateCustomFileResponse
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metadata** | **Object** |  | [optional] 
-**Test** | **bool?** |  | [optional] 
-**TemplateId** | **string** |  | [optional] 
-**Submissions** | [**List&lt;SubmissionDataBatchRequest&gt;**](SubmissionDataBatchRequest.md) |  | 
+**CustomFile** | [**CustomFile**](CustomFile.md) |  | [optional] 
+**Errors** | **List&lt;string&gt;** |  | [optional] 
+**Status** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

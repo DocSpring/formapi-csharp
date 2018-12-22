@@ -6,14 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**BatchGeneratePdfV1**](PDFApi.md#batchgeneratepdfv1) | **POST** /templates/{template_id}/submissions/batch | Generates multiple PDFs
 [**BatchGeneratePdfs**](PDFApi.md#batchgeneratepdfs) | **POST** /submissions/batches | Generates multiple PDFs
+[**CombinePdfs**](PDFApi.md#combinepdfs) | **POST** /combined_submissions?v&#x3D;2 | Merge submission PDFs, template PDFs, or custom files
 [**CombineSubmissions**](PDFApi.md#combinesubmissions) | **POST** /combined_submissions | Merge generated PDFs together
+[**CreateCustomFileFromUpload**](PDFApi.md#createcustomfilefromupload) | **POST** /custom_files | Create a new custom file from a cached presign upload
 [**CreateDataRequestToken**](PDFApi.md#createdatarequesttoken) | **POST** /data_requests/{data_request_id}/tokens | Creates a new data request token for form authentication
-[**CreateTemplate**](PDFApi.md#createtemplate) | **POST** /templates | Upload a new PDF template
+[**CreateTemplate**](PDFApi.md#createtemplate) | **POST** /templates | Upload a new PDF template with a file upload
+[**CreateTemplateFromUpload**](PDFApi.md#createtemplatefromupload) | **POST** /templates?v&#x3D;2 | Create a new PDF template from a cached presign upload
 [**ExpireCombinedSubmission**](PDFApi.md#expirecombinedsubmission) | **DELETE** /combined_submissions/{combined_submission_id} | Expire a combined submission
 [**ExpireSubmission**](PDFApi.md#expiresubmission) | **DELETE** /submissions/{submission_id} | Expire a PDF submission
 [**GeneratePDF**](PDFApi.md#generatepdf) | **POST** /templates/{template_id}/submissions | Generates a new PDF
 [**GetCombinedSubmission**](PDFApi.md#getcombinedsubmission) | **GET** /combined_submissions/{combined_submission_id} | Check the status of a combined submission (merged PDFs)
 [**GetDataRequest**](PDFApi.md#getdatarequest) | **GET** /data_requests/{data_request_id} | Look up a submission data request
+[**GetPresignUrl**](PDFApi.md#getpresignurl) | **GET** /uploads/presign | Get a presigned URL so that you can upload a file to our AWS S3 bucket
 [**GetSubmission**](PDFApi.md#getsubmission) | **GET** /submissions/{submission_id} | Check the status of a PDF
 [**GetSubmissionBatch**](PDFApi.md#getsubmissionbatch) | **GET** /submissions/batches/{submission_batch_id} | Check the status of a submission batch job
 [**GetTemplate**](PDFApi.md#gettemplate) | **GET** /templates/{template_id} | Check the status of an uploaded template
@@ -25,7 +29,7 @@ Method | HTTP request | Description
 
 <a name="batchgeneratepdfv1"></a>
 # **BatchGeneratePdfV1**
-> List<CreateSubmissionResponse> BatchGeneratePdfV1 (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1)
+> List<CreateSubmissionResponse> BatchGeneratePdfV1 (string templateId, List<Object> requestBody)
 
 Generates multiple PDFs
 
@@ -49,12 +53,12 @@ namespace Example
 
             var apiInstance = new PDFApi();
             var templateId = tpl_000000000000000001;  // string | 
-            var createSubmissionDataBatchV1 = new List<CreateSubmissionDataBatchV1>(); // List<CreateSubmissionDataBatchV1> | 
+            var requestBody = new List<Object>(); // List<Object> | 
 
             try
             {
                 // Generates multiple PDFs
-                List&lt;CreateSubmissionResponse&gt; result = apiInstance.BatchGeneratePdfV1(templateId, createSubmissionDataBatchV1);
+                List&lt;CreateSubmissionResponse&gt; result = apiInstance.BatchGeneratePdfV1(templateId, requestBody);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -71,7 +75,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateId** | **string**|  | 
- **createSubmissionDataBatchV1** | [**List&lt;CreateSubmissionDataBatchV1&gt;**](List.md)|  | 
+ **requestBody** | [**List&lt;Object&gt;**](List.md)|  | 
 
 ### Return type
 
@@ -151,6 +155,69 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="combinepdfs"></a>
+# **CombinePdfs**
+> CreateCombinedSubmissionResponse CombinePdfs (CombinePdfsData combinePdfsData)
+
+Merge submission PDFs, template PDFs, or custom files
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class CombinePdfsExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var combinePdfsData = new CombinePdfsData(); // CombinePdfsData | 
+
+            try
+            {
+                // Merge submission PDFs, template PDFs, or custom files
+                CreateCombinedSubmissionResponse result = apiInstance.CombinePdfs(combinePdfsData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.CombinePdfs: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **combinePdfsData** | [**CombinePdfsData**](CombinePdfsData.md)|  | 
+
+### Return type
+
+[**CreateCombinedSubmissionResponse**](CreateCombinedSubmissionResponse.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="combinesubmissions"></a>
 # **CombineSubmissions**
 > CreateCombinedSubmissionResponse CombineSubmissions (CombinedSubmissionData combinedSubmissionData)
@@ -202,6 +269,69 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateCombinedSubmissionResponse**](CreateCombinedSubmissionResponse.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createcustomfilefromupload"></a>
+# **CreateCustomFileFromUpload**
+> CreateCustomFileResponse CreateCustomFileFromUpload (CreateCustomFileData createCustomFileData)
+
+Create a new custom file from a cached presign upload
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class CreateCustomFileFromUploadExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var createCustomFileData = new CreateCustomFileData(); // CreateCustomFileData | 
+
+            try
+            {
+                // Create a new custom file from a cached presign upload
+                CreateCustomFileResponse result = apiInstance.CreateCustomFileFromUpload(createCustomFileData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.CreateCustomFileFromUpload: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createCustomFileData** | [**CreateCustomFileData**](CreateCustomFileData.md)|  | 
+
+### Return type
+
+[**CreateCustomFileResponse**](CreateCustomFileResponse.md)
 
 ### Authorization
 
@@ -281,7 +411,7 @@ Name | Type | Description  | Notes
 # **CreateTemplate**
 > PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName)
 
-Upload a new PDF template
+Upload a new PDF template with a file upload
 
 ### Example
 ```csharp
@@ -307,7 +437,7 @@ namespace Example
 
             try
             {
-                // Upload a new PDF template
+                // Upload a new PDF template with a file upload
                 PendingTemplate result = apiInstance.CreateTemplate(templateDocument, templateName);
                 Debug.WriteLine(result);
             }
@@ -338,6 +468,69 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createtemplatefromupload"></a>
+# **CreateTemplateFromUpload**
+> PendingTemplate CreateTemplateFromUpload (CreateTemplateData createTemplateData)
+
+Create a new PDF template from a cached presign upload
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class CreateTemplateFromUploadExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var createTemplateData = new CreateTemplateData(); // CreateTemplateData | 
+
+            try
+            {
+                // Create a new PDF template from a cached presign upload
+                PendingTemplate result = apiInstance.CreateTemplateFromUpload(createTemplateData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.CreateTemplateFromUpload: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createTemplateData** | [**CreateTemplateData**](CreateTemplateData.md)|  | 
+
+### Return type
+
+[**PendingTemplate**](PendingTemplate.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -470,7 +663,7 @@ Name | Type | Description  | Notes
 
 <a name="generatepdf"></a>
 # **GeneratePDF**
-> CreateSubmissionResponse GeneratePDF (string templateId, CreateSubmissionData createSubmissionData)
+> CreateSubmissionResponse GeneratePDF (string templateId, SubmissionData submissionData)
 
 Generates a new PDF
 
@@ -494,12 +687,12 @@ namespace Example
 
             var apiInstance = new PDFApi();
             var templateId = tpl_000000000000000001;  // string | 
-            var createSubmissionData = new CreateSubmissionData(); // CreateSubmissionData | 
+            var submissionData = new SubmissionData(); // SubmissionData | 
 
             try
             {
                 // Generates a new PDF
-                CreateSubmissionResponse result = apiInstance.GeneratePDF(templateId, createSubmissionData);
+                CreateSubmissionResponse result = apiInstance.GeneratePDF(templateId, submissionData);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -516,7 +709,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateId** | **string**|  | 
- **createSubmissionData** | [**CreateSubmissionData**](CreateSubmissionData.md)|  | 
+ **submissionData** | [**SubmissionData**](SubmissionData.md)|  | 
 
 ### Return type
 
@@ -659,6 +852,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getpresignurl"></a>
+# **GetPresignUrl**
+> Dictionary<string, Object> GetPresignUrl ()
+
+Get a presigned URL so that you can upload a file to our AWS S3 bucket
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class GetPresignUrlExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+
+            try
+            {
+                // Get a presigned URL so that you can upload a file to our AWS S3 bucket
+                Dictionary&lt;string, Object&gt; result = apiInstance.GetPresignUrl();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.GetPresignUrl: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**Dictionary<string, Object>**
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="getsubmission"></a>
 # **GetSubmission**
 > Submission GetSubmission (string submissionId)
@@ -747,7 +999,7 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new PDFApi();
-            var submissionBatchId = sba_000000000000000001;  // string | 
+            var submissionBatchId = sbb_000000000000000001;  // string | 
             var includeSubmissions = true;  // bool? |  (optional) 
 
             try

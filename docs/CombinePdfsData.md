@@ -1,14 +1,13 @@
-# FormApi.Client.Model.CreateSubmissionDataBatchRequest
+# FormApi.Client.Model.CombinePdfsData
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TemplateId** | **string** |  | 
 **Test** | **bool?** |  | [optional] 
-**Data** | **Object** |  | 
-**Html** | **string** |  | [optional] 
-**Css** | **string** |  | [optional] 
+**SourcePdfs** | **List&lt;Object&gt;** |  | 
 **Metadata** | **Object** |  | [optional] 
+**ExpiresIn** | **int?** |  | [optional] 
+**DeleteCustomFiles** | **bool?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

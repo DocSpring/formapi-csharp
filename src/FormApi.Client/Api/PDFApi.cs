@@ -32,9 +32,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>List&lt;CreateSubmissionResponse&gt;</returns>
-        List<CreateSubmissionResponse> BatchGeneratePdfV1 (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1);
+        List<CreateSubmissionResponse> BatchGeneratePdfV1 (string templateId, List<Object> requestBody);
 
         /// <summary>
         /// Generates multiple PDFs
@@ -44,9 +44,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>ApiResponse of List&lt;CreateSubmissionResponse&gt;</returns>
-        ApiResponse<List<CreateSubmissionResponse>> BatchGeneratePdfV1WithHttpInfo (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1);
+        ApiResponse<List<CreateSubmissionResponse>> BatchGeneratePdfV1WithHttpInfo (string templateId, List<Object> requestBody);
         /// <summary>
         /// Generates multiple PDFs
         /// </summary>
@@ -69,6 +69,27 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of CreateSubmissionBatchResponse</returns>
         ApiResponse<CreateSubmissionBatchResponse> BatchGeneratePdfsWithHttpInfo (SubmissionBatchData submissionBatchData);
         /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>CreateCombinedSubmissionResponse</returns>
+        CreateCombinedSubmissionResponse CombinePdfs (CombinePdfsData combinePdfsData);
+
+        /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>ApiResponse of CreateCombinedSubmissionResponse</returns>
+        ApiResponse<CreateCombinedSubmissionResponse> CombinePdfsWithHttpInfo (CombinePdfsData combinePdfsData);
+        /// <summary>
         /// Merge generated PDFs together
         /// </summary>
         /// <remarks>
@@ -89,6 +110,27 @@ namespace FormApi.Client.Api
         /// <param name="combinedSubmissionData"></param>
         /// <returns>ApiResponse of CreateCombinedSubmissionResponse</returns>
         ApiResponse<CreateCombinedSubmissionResponse> CombineSubmissionsWithHttpInfo (CombinedSubmissionData combinedSubmissionData);
+        /// <summary>
+        /// Create a new custom file from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>CreateCustomFileResponse</returns>
+        CreateCustomFileResponse CreateCustomFileFromUpload (CreateCustomFileData createCustomFileData);
+
+        /// <summary>
+        /// Create a new custom file from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>ApiResponse of CreateCustomFileResponse</returns>
+        ApiResponse<CreateCustomFileResponse> CreateCustomFileFromUploadWithHttpInfo (CreateCustomFileData createCustomFileData);
         /// <summary>
         /// Creates a new data request token for form authentication
         /// </summary>
@@ -111,7 +153,7 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of CreateSubmissionDataRequestTokenResponse</returns>
         ApiResponse<CreateSubmissionDataRequestTokenResponse> CreateDataRequestTokenWithHttpInfo (string dataRequestId);
         /// <summary>
-        /// Upload a new PDF template
+        /// Upload a new PDF template with a file upload
         /// </summary>
         /// <remarks>
         /// 
@@ -123,7 +165,7 @@ namespace FormApi.Client.Api
         PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName);
 
         /// <summary>
-        /// Upload a new PDF template
+        /// Upload a new PDF template with a file upload
         /// </summary>
         /// <remarks>
         /// 
@@ -133,6 +175,27 @@ namespace FormApi.Client.Api
         /// <param name="templateName"></param>
         /// <returns>ApiResponse of PendingTemplate</returns>
         ApiResponse<PendingTemplate> CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>PendingTemplate</returns>
+        PendingTemplate CreateTemplateFromUpload (CreateTemplateData createTemplateData);
+
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>ApiResponse of PendingTemplate</returns>
+        ApiResponse<PendingTemplate> CreateTemplateFromUploadWithHttpInfo (CreateTemplateData createTemplateData);
         /// <summary>
         /// Expire a combined submission
         /// </summary>
@@ -183,9 +246,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>CreateSubmissionResponse</returns>
-        CreateSubmissionResponse GeneratePDF (string templateId, CreateSubmissionData createSubmissionData);
+        CreateSubmissionResponse GeneratePDF (string templateId, SubmissionData submissionData);
 
         /// <summary>
         /// Generates a new PDF
@@ -195,9 +258,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>ApiResponse of CreateSubmissionResponse</returns>
-        ApiResponse<CreateSubmissionResponse> GeneratePDFWithHttpInfo (string templateId, CreateSubmissionData createSubmissionData);
+        ApiResponse<CreateSubmissionResponse> GeneratePDFWithHttpInfo (string templateId, SubmissionData submissionData);
         /// <summary>
         /// Check the status of a combined submission (merged PDFs)
         /// </summary>
@@ -240,6 +303,25 @@ namespace FormApi.Client.Api
         /// <param name="dataRequestId"></param>
         /// <returns>ApiResponse of SubmissionDataRequest</returns>
         ApiResponse<SubmissionDataRequest> GetDataRequestWithHttpInfo (string dataRequestId);
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Dictionary&lt;string, Object&gt;</returns>
+        Dictionary<string, Object> GetPresignUrl ();
+
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
+        ApiResponse<Dictionary<string, Object>> GetPresignUrlWithHttpInfo ();
         /// <summary>
         /// Check the status of a PDF
         /// </summary>
@@ -401,9 +483,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>Task of List&lt;CreateSubmissionResponse&gt;</returns>
-        System.Threading.Tasks.Task<List<CreateSubmissionResponse>> BatchGeneratePdfV1Async (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1);
+        System.Threading.Tasks.Task<List<CreateSubmissionResponse>> BatchGeneratePdfV1Async (string templateId, List<Object> requestBody);
 
         /// <summary>
         /// Generates multiple PDFs
@@ -413,9 +495,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>Task of ApiResponse (List&lt;CreateSubmissionResponse&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<CreateSubmissionResponse>>> BatchGeneratePdfV1AsyncWithHttpInfo (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1);
+        System.Threading.Tasks.Task<ApiResponse<List<CreateSubmissionResponse>>> BatchGeneratePdfV1AsyncWithHttpInfo (string templateId, List<Object> requestBody);
         /// <summary>
         /// Generates multiple PDFs
         /// </summary>
@@ -438,6 +520,27 @@ namespace FormApi.Client.Api
         /// <returns>Task of ApiResponse (CreateSubmissionBatchResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateSubmissionBatchResponse>> BatchGeneratePdfsAsyncWithHttpInfo (SubmissionBatchData submissionBatchData);
         /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>Task of CreateCombinedSubmissionResponse</returns>
+        System.Threading.Tasks.Task<CreateCombinedSubmissionResponse> CombinePdfsAsync (CombinePdfsData combinePdfsData);
+
+        /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>Task of ApiResponse (CreateCombinedSubmissionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateCombinedSubmissionResponse>> CombinePdfsAsyncWithHttpInfo (CombinePdfsData combinePdfsData);
+        /// <summary>
         /// Merge generated PDFs together
         /// </summary>
         /// <remarks>
@@ -458,6 +561,27 @@ namespace FormApi.Client.Api
         /// <param name="combinedSubmissionData"></param>
         /// <returns>Task of ApiResponse (CreateCombinedSubmissionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCombinedSubmissionResponse>> CombineSubmissionsAsyncWithHttpInfo (CombinedSubmissionData combinedSubmissionData);
+        /// <summary>
+        /// Create a new custom file from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>Task of CreateCustomFileResponse</returns>
+        System.Threading.Tasks.Task<CreateCustomFileResponse> CreateCustomFileFromUploadAsync (CreateCustomFileData createCustomFileData);
+
+        /// <summary>
+        /// Create a new custom file from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>Task of ApiResponse (CreateCustomFileResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateCustomFileResponse>> CreateCustomFileFromUploadAsyncWithHttpInfo (CreateCustomFileData createCustomFileData);
         /// <summary>
         /// Creates a new data request token for form authentication
         /// </summary>
@@ -480,7 +604,7 @@ namespace FormApi.Client.Api
         /// <returns>Task of ApiResponse (CreateSubmissionDataRequestTokenResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateSubmissionDataRequestTokenResponse>> CreateDataRequestTokenAsyncWithHttpInfo (string dataRequestId);
         /// <summary>
-        /// Upload a new PDF template
+        /// Upload a new PDF template with a file upload
         /// </summary>
         /// <remarks>
         /// 
@@ -492,7 +616,7 @@ namespace FormApi.Client.Api
         System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName);
 
         /// <summary>
-        /// Upload a new PDF template
+        /// Upload a new PDF template with a file upload
         /// </summary>
         /// <remarks>
         /// 
@@ -502,6 +626,27 @@ namespace FormApi.Client.Api
         /// <param name="templateName"></param>
         /// <returns>Task of ApiResponse (PendingTemplate)</returns>
         System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>Task of PendingTemplate</returns>
+        System.Threading.Tasks.Task<PendingTemplate> CreateTemplateFromUploadAsync (CreateTemplateData createTemplateData);
+
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>Task of ApiResponse (PendingTemplate)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateFromUploadAsyncWithHttpInfo (CreateTemplateData createTemplateData);
         /// <summary>
         /// Expire a combined submission
         /// </summary>
@@ -552,9 +697,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>Task of CreateSubmissionResponse</returns>
-        System.Threading.Tasks.Task<CreateSubmissionResponse> GeneratePDFAsync (string templateId, CreateSubmissionData createSubmissionData);
+        System.Threading.Tasks.Task<CreateSubmissionResponse> GeneratePDFAsync (string templateId, SubmissionData submissionData);
 
         /// <summary>
         /// Generates a new PDF
@@ -564,9 +709,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>Task of ApiResponse (CreateSubmissionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateSubmissionResponse>> GeneratePDFAsyncWithHttpInfo (string templateId, CreateSubmissionData createSubmissionData);
+        System.Threading.Tasks.Task<ApiResponse<CreateSubmissionResponse>> GeneratePDFAsyncWithHttpInfo (string templateId, SubmissionData submissionData);
         /// <summary>
         /// Check the status of a combined submission (merged PDFs)
         /// </summary>
@@ -609,6 +754,25 @@ namespace FormApi.Client.Api
         /// <param name="dataRequestId"></param>
         /// <returns>Task of ApiResponse (SubmissionDataRequest)</returns>
         System.Threading.Tasks.Task<ApiResponse<SubmissionDataRequest>> GetDataRequestAsyncWithHttpInfo (string dataRequestId);
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of Dictionary&lt;string, Object&gt;</returns>
+        System.Threading.Tasks.Task<Dictionary<string, Object>> GetPresignUrlAsync ();
+
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetPresignUrlAsyncWithHttpInfo ();
         /// <summary>
         /// Check the status of a PDF
         /// </summary>
@@ -865,11 +1029,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>List&lt;CreateSubmissionResponse&gt;</returns>
-        public List<CreateSubmissionResponse> BatchGeneratePdfV1 (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1)
+        public List<CreateSubmissionResponse> BatchGeneratePdfV1 (string templateId, List<Object> requestBody)
         {
-             ApiResponse<List<CreateSubmissionResponse>> localVarResponse = BatchGeneratePdfV1WithHttpInfo(templateId, createSubmissionDataBatchV1);
+             ApiResponse<List<CreateSubmissionResponse>> localVarResponse = BatchGeneratePdfV1WithHttpInfo(templateId, requestBody);
              return localVarResponse.Data;
         }
 
@@ -878,16 +1042,16 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>ApiResponse of List&lt;CreateSubmissionResponse&gt;</returns>
-        public ApiResponse< List<CreateSubmissionResponse> > BatchGeneratePdfV1WithHttpInfo (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1)
+        public ApiResponse< List<CreateSubmissionResponse> > BatchGeneratePdfV1WithHttpInfo (string templateId, List<Object> requestBody)
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
                 throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->BatchGeneratePdfV1");
-            // verify the required parameter 'createSubmissionDataBatchV1' is set
-            if (createSubmissionDataBatchV1 == null)
-                throw new ApiException(400, "Missing required parameter 'createSubmissionDataBatchV1' when calling PDFApi->BatchGeneratePdfV1");
+            // verify the required parameter 'requestBody' is set
+            if (requestBody == null)
+                throw new ApiException(400, "Missing required parameter 'requestBody' when calling PDFApi->BatchGeneratePdfV1");
 
             var localVarPath = "/templates/{template_id}/submissions/batch";
             var localVarPathParams = new Dictionary<String, String>();
@@ -912,13 +1076,13 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
-            if (createSubmissionDataBatchV1 != null && createSubmissionDataBatchV1.GetType() != typeof(byte[]))
+            if (requestBody != null && requestBody.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(createSubmissionDataBatchV1); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(requestBody); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = createSubmissionDataBatchV1; // byte array
+                localVarPostBody = requestBody; // byte array
             }
 
             // authentication (api_token_basic) required
@@ -951,11 +1115,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>Task of List&lt;CreateSubmissionResponse&gt;</returns>
-        public async System.Threading.Tasks.Task<List<CreateSubmissionResponse>> BatchGeneratePdfV1Async (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1)
+        public async System.Threading.Tasks.Task<List<CreateSubmissionResponse>> BatchGeneratePdfV1Async (string templateId, List<Object> requestBody)
         {
-             ApiResponse<List<CreateSubmissionResponse>> localVarResponse = await BatchGeneratePdfV1AsyncWithHttpInfo(templateId, createSubmissionDataBatchV1);
+             ApiResponse<List<CreateSubmissionResponse>> localVarResponse = await BatchGeneratePdfV1AsyncWithHttpInfo(templateId, requestBody);
              return localVarResponse.Data;
 
         }
@@ -965,16 +1129,16 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionDataBatchV1"></param>
+        /// <param name="requestBody"></param>
         /// <returns>Task of ApiResponse (List&lt;CreateSubmissionResponse&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<CreateSubmissionResponse>>> BatchGeneratePdfV1AsyncWithHttpInfo (string templateId, List<CreateSubmissionDataBatchV1> createSubmissionDataBatchV1)
+        public async System.Threading.Tasks.Task<ApiResponse<List<CreateSubmissionResponse>>> BatchGeneratePdfV1AsyncWithHttpInfo (string templateId, List<Object> requestBody)
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
                 throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->BatchGeneratePdfV1");
-            // verify the required parameter 'createSubmissionDataBatchV1' is set
-            if (createSubmissionDataBatchV1 == null)
-                throw new ApiException(400, "Missing required parameter 'createSubmissionDataBatchV1' when calling PDFApi->BatchGeneratePdfV1");
+            // verify the required parameter 'requestBody' is set
+            if (requestBody == null)
+                throw new ApiException(400, "Missing required parameter 'requestBody' when calling PDFApi->BatchGeneratePdfV1");
 
             var localVarPath = "/templates/{template_id}/submissions/batch";
             var localVarPathParams = new Dictionary<String, String>();
@@ -999,13 +1163,13 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
-            if (createSubmissionDataBatchV1 != null && createSubmissionDataBatchV1.GetType() != typeof(byte[]))
+            if (requestBody != null && requestBody.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(createSubmissionDataBatchV1); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(requestBody); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = createSubmissionDataBatchV1; // byte array
+                localVarPostBody = requestBody; // byte array
             }
 
             // authentication (api_token_basic) required
@@ -1195,6 +1359,167 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>CreateCombinedSubmissionResponse</returns>
+        public CreateCombinedSubmissionResponse CombinePdfs (CombinePdfsData combinePdfsData)
+        {
+             ApiResponse<CreateCombinedSubmissionResponse> localVarResponse = CombinePdfsWithHttpInfo(combinePdfsData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>ApiResponse of CreateCombinedSubmissionResponse</returns>
+        public ApiResponse< CreateCombinedSubmissionResponse > CombinePdfsWithHttpInfo (CombinePdfsData combinePdfsData)
+        {
+            // verify the required parameter 'combinePdfsData' is set
+            if (combinePdfsData == null)
+                throw new ApiException(400, "Missing required parameter 'combinePdfsData' when calling PDFApi->CombinePdfs");
+
+            var localVarPath = "/combined_submissions?v=2";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (combinePdfsData != null && combinePdfsData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(combinePdfsData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = combinePdfsData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CombinePdfs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CreateCombinedSubmissionResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CreateCombinedSubmissionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateCombinedSubmissionResponse)));
+        }
+
+        /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>Task of CreateCombinedSubmissionResponse</returns>
+        public async System.Threading.Tasks.Task<CreateCombinedSubmissionResponse> CombinePdfsAsync (CombinePdfsData combinePdfsData)
+        {
+             ApiResponse<CreateCombinedSubmissionResponse> localVarResponse = await CombinePdfsAsyncWithHttpInfo(combinePdfsData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Merge submission PDFs, template PDFs, or custom files 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="combinePdfsData"></param>
+        /// <returns>Task of ApiResponse (CreateCombinedSubmissionResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CreateCombinedSubmissionResponse>> CombinePdfsAsyncWithHttpInfo (CombinePdfsData combinePdfsData)
+        {
+            // verify the required parameter 'combinePdfsData' is set
+            if (combinePdfsData == null)
+                throw new ApiException(400, "Missing required parameter 'combinePdfsData' when calling PDFApi->CombinePdfs");
+
+            var localVarPath = "/combined_submissions?v=2";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (combinePdfsData != null && combinePdfsData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(combinePdfsData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = combinePdfsData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CombinePdfs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CreateCombinedSubmissionResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CreateCombinedSubmissionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateCombinedSubmissionResponse)));
+        }
+
+        /// <summary>
         /// Merge generated PDFs together 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1356,6 +1681,167 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
+        /// Create a new custom file from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>CreateCustomFileResponse</returns>
+        public CreateCustomFileResponse CreateCustomFileFromUpload (CreateCustomFileData createCustomFileData)
+        {
+             ApiResponse<CreateCustomFileResponse> localVarResponse = CreateCustomFileFromUploadWithHttpInfo(createCustomFileData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a new custom file from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>ApiResponse of CreateCustomFileResponse</returns>
+        public ApiResponse< CreateCustomFileResponse > CreateCustomFileFromUploadWithHttpInfo (CreateCustomFileData createCustomFileData)
+        {
+            // verify the required parameter 'createCustomFileData' is set
+            if (createCustomFileData == null)
+                throw new ApiException(400, "Missing required parameter 'createCustomFileData' when calling PDFApi->CreateCustomFileFromUpload");
+
+            var localVarPath = "/custom_files";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (createCustomFileData != null && createCustomFileData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(createCustomFileData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createCustomFileData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateCustomFileFromUpload", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CreateCustomFileResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CreateCustomFileResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateCustomFileResponse)));
+        }
+
+        /// <summary>
+        /// Create a new custom file from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>Task of CreateCustomFileResponse</returns>
+        public async System.Threading.Tasks.Task<CreateCustomFileResponse> CreateCustomFileFromUploadAsync (CreateCustomFileData createCustomFileData)
+        {
+             ApiResponse<CreateCustomFileResponse> localVarResponse = await CreateCustomFileFromUploadAsyncWithHttpInfo(createCustomFileData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create a new custom file from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCustomFileData"></param>
+        /// <returns>Task of ApiResponse (CreateCustomFileResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CreateCustomFileResponse>> CreateCustomFileFromUploadAsyncWithHttpInfo (CreateCustomFileData createCustomFileData)
+        {
+            // verify the required parameter 'createCustomFileData' is set
+            if (createCustomFileData == null)
+                throw new ApiException(400, "Missing required parameter 'createCustomFileData' when calling PDFApi->CreateCustomFileFromUpload");
+
+            var localVarPath = "/custom_files";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (createCustomFileData != null && createCustomFileData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(createCustomFileData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createCustomFileData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateCustomFileFromUpload", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CreateCustomFileResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CreateCustomFileResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateCustomFileResponse)));
+        }
+
+        /// <summary>
         /// Creates a new data request token for form authentication 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1501,7 +1987,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Upload a new PDF template 
+        /// Upload a new PDF template with a file upload 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
@@ -1514,7 +2000,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Upload a new PDF template 
+        /// Upload a new PDF template with a file upload 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
@@ -1580,7 +2066,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Upload a new PDF template 
+        /// Upload a new PDF template with a file upload 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
@@ -1594,7 +2080,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Upload a new PDF template 
+        /// Upload a new PDF template with a file upload 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
@@ -1651,6 +2137,167 @@ namespace FormApi.Client.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("CreateTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PendingTemplate>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PendingTemplate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PendingTemplate)));
+        }
+
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>PendingTemplate</returns>
+        public PendingTemplate CreateTemplateFromUpload (CreateTemplateData createTemplateData)
+        {
+             ApiResponse<PendingTemplate> localVarResponse = CreateTemplateFromUploadWithHttpInfo(createTemplateData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>ApiResponse of PendingTemplate</returns>
+        public ApiResponse< PendingTemplate > CreateTemplateFromUploadWithHttpInfo (CreateTemplateData createTemplateData)
+        {
+            // verify the required parameter 'createTemplateData' is set
+            if (createTemplateData == null)
+                throw new ApiException(400, "Missing required parameter 'createTemplateData' when calling PDFApi->CreateTemplateFromUpload");
+
+            var localVarPath = "/templates?v=2";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (createTemplateData != null && createTemplateData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(createTemplateData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createTemplateData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateTemplateFromUpload", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PendingTemplate>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PendingTemplate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PendingTemplate)));
+        }
+
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>Task of PendingTemplate</returns>
+        public async System.Threading.Tasks.Task<PendingTemplate> CreateTemplateFromUploadAsync (CreateTemplateData createTemplateData)
+        {
+             ApiResponse<PendingTemplate> localVarResponse = await CreateTemplateFromUploadAsyncWithHttpInfo(createTemplateData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create a new PDF template from a cached presign upload 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createTemplateData"></param>
+        /// <returns>Task of ApiResponse (PendingTemplate)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateFromUploadAsyncWithHttpInfo (CreateTemplateData createTemplateData)
+        {
+            // verify the required parameter 'createTemplateData' is set
+            if (createTemplateData == null)
+                throw new ApiException(400, "Missing required parameter 'createTemplateData' when calling PDFApi->CreateTemplateFromUpload");
+
+            var localVarPath = "/templates?v=2";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (createTemplateData != null && createTemplateData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(createTemplateData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createTemplateData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateTemplateFromUpload", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1954,11 +2601,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>CreateSubmissionResponse</returns>
-        public CreateSubmissionResponse GeneratePDF (string templateId, CreateSubmissionData createSubmissionData)
+        public CreateSubmissionResponse GeneratePDF (string templateId, SubmissionData submissionData)
         {
-             ApiResponse<CreateSubmissionResponse> localVarResponse = GeneratePDFWithHttpInfo(templateId, createSubmissionData);
+             ApiResponse<CreateSubmissionResponse> localVarResponse = GeneratePDFWithHttpInfo(templateId, submissionData);
              return localVarResponse.Data;
         }
 
@@ -1967,16 +2614,16 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>ApiResponse of CreateSubmissionResponse</returns>
-        public ApiResponse< CreateSubmissionResponse > GeneratePDFWithHttpInfo (string templateId, CreateSubmissionData createSubmissionData)
+        public ApiResponse< CreateSubmissionResponse > GeneratePDFWithHttpInfo (string templateId, SubmissionData submissionData)
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
                 throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->GeneratePDF");
-            // verify the required parameter 'createSubmissionData' is set
-            if (createSubmissionData == null)
-                throw new ApiException(400, "Missing required parameter 'createSubmissionData' when calling PDFApi->GeneratePDF");
+            // verify the required parameter 'submissionData' is set
+            if (submissionData == null)
+                throw new ApiException(400, "Missing required parameter 'submissionData' when calling PDFApi->GeneratePDF");
 
             var localVarPath = "/templates/{template_id}/submissions";
             var localVarPathParams = new Dictionary<String, String>();
@@ -2001,13 +2648,13 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
-            if (createSubmissionData != null && createSubmissionData.GetType() != typeof(byte[]))
+            if (submissionData != null && submissionData.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(createSubmissionData); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(submissionData); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = createSubmissionData; // byte array
+                localVarPostBody = submissionData; // byte array
             }
 
             // authentication (api_token_basic) required
@@ -2040,11 +2687,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>Task of CreateSubmissionResponse</returns>
-        public async System.Threading.Tasks.Task<CreateSubmissionResponse> GeneratePDFAsync (string templateId, CreateSubmissionData createSubmissionData)
+        public async System.Threading.Tasks.Task<CreateSubmissionResponse> GeneratePDFAsync (string templateId, SubmissionData submissionData)
         {
-             ApiResponse<CreateSubmissionResponse> localVarResponse = await GeneratePDFAsyncWithHttpInfo(templateId, createSubmissionData);
+             ApiResponse<CreateSubmissionResponse> localVarResponse = await GeneratePDFAsyncWithHttpInfo(templateId, submissionData);
              return localVarResponse.Data;
 
         }
@@ -2054,16 +2701,16 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
-        /// <param name="createSubmissionData"></param>
+        /// <param name="submissionData"></param>
         /// <returns>Task of ApiResponse (CreateSubmissionResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CreateSubmissionResponse>> GeneratePDFAsyncWithHttpInfo (string templateId, CreateSubmissionData createSubmissionData)
+        public async System.Threading.Tasks.Task<ApiResponse<CreateSubmissionResponse>> GeneratePDFAsyncWithHttpInfo (string templateId, SubmissionData submissionData)
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
                 throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->GeneratePDF");
-            // verify the required parameter 'createSubmissionData' is set
-            if (createSubmissionData == null)
-                throw new ApiException(400, "Missing required parameter 'createSubmissionData' when calling PDFApi->GeneratePDF");
+            // verify the required parameter 'submissionData' is set
+            if (submissionData == null)
+                throw new ApiException(400, "Missing required parameter 'submissionData' when calling PDFApi->GeneratePDF");
 
             var localVarPath = "/templates/{template_id}/submissions";
             var localVarPathParams = new Dictionary<String, String>();
@@ -2088,13 +2735,13 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
-            if (createSubmissionData != null && createSubmissionData.GetType() != typeof(byte[]))
+            if (submissionData != null && submissionData.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(createSubmissionData); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(submissionData); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = createSubmissionData; // byte array
+                localVarPostBody = submissionData; // byte array
             }
 
             // authentication (api_token_basic) required
@@ -2410,6 +3057,139 @@ namespace FormApi.Client.Api
             return new ApiResponse<SubmissionDataRequest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SubmissionDataRequest) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SubmissionDataRequest)));
+        }
+
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Dictionary&lt;string, Object&gt;</returns>
+        public Dictionary<string, Object> GetPresignUrl ()
+        {
+             ApiResponse<Dictionary<string, Object>> localVarResponse = GetPresignUrlWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
+        public ApiResponse< Dictionary<string, Object> > GetPresignUrlWithHttpInfo ()
+        {
+
+            var localVarPath = "/uploads/presign";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPresignUrl", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Dictionary<string, Object>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Dictionary<string, Object>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, Object>)));
+        }
+
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of Dictionary&lt;string, Object&gt;</returns>
+        public async System.Threading.Tasks.Task<Dictionary<string, Object>> GetPresignUrlAsync ()
+        {
+             ApiResponse<Dictionary<string, Object>> localVarResponse = await GetPresignUrlAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get a presigned URL so that you can upload a file to our AWS S3 bucket 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetPresignUrlAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/uploads/presign";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetPresignUrl", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Dictionary<string, Object>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Dictionary<string, Object>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, Object>)));
         }
 
         /// <summary>

@@ -25,56 +25,41 @@ using OpenAPIDateConverter = FormApi.Client.Client.OpenAPIDateConverter;
 namespace FormApi.Client.Model
 {
     /// <summary>
-    /// CreateSubmissionDataBatchRequest
+    /// SubmissionDataBatchRequest
     /// </summary>
     [DataContract]
-    public partial class CreateSubmissionDataBatchRequest :  IEquatable<CreateSubmissionDataBatchRequest>, IValidatableObject
+    public partial class SubmissionDataBatchRequest :  IEquatable<SubmissionDataBatchRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSubmissionDataBatchRequest" /> class.
+        /// Initializes a new instance of the <see cref="SubmissionDataBatchRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateSubmissionDataBatchRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSubmissionDataBatchRequest" /> class.
-        /// </summary>
-        /// <param name="templateId">templateId (required).</param>
-        /// <param name="test">test.</param>
-        /// <param name="data">data (required).</param>
-        /// <param name="html">html.</param>
         /// <param name="css">css.</param>
         /// <param name="metadata">metadata.</param>
-        public CreateSubmissionDataBatchRequest(string templateId = default(string), bool? test = default(bool?), Object data = default(Object), string html = default(string), string css = default(string), Object metadata = default(Object))
+        /// <param name="test">test.</param>
+        /// <param name="data">data.</param>
+        /// <param name="templateId">templateId.</param>
+        /// <param name="html">html.</param>
+        public SubmissionDataBatchRequest(string css = default(string), Object metadata = default(Object), bool? test = default(bool?), Object data = default(Object), string templateId = default(string), string html = default(string))
         {
-            // to ensure "templateId" is required (not null)
-            if (templateId == null)
-            {
-                throw new InvalidDataException("templateId is a required property for CreateSubmissionDataBatchRequest and cannot be null");
-            }
-            else
-            {
-                this.TemplateId = templateId;
-            }
-            // to ensure "data" is required (not null)
-            if (data == null)
-            {
-                throw new InvalidDataException("data is a required property for CreateSubmissionDataBatchRequest and cannot be null");
-            }
-            else
-            {
-                this.Data = data;
-            }
-            this.Test = test;
-            this.Html = html;
             this.Css = css;
             this.Metadata = metadata;
+            this.Test = test;
+            this.Data = data;
+            this.TemplateId = templateId;
+            this.Html = html;
         }
         
         /// <summary>
-        /// Gets or Sets TemplateId
+        /// Gets or Sets Css
         /// </summary>
-        [DataMember(Name="template_id", EmitDefaultValue=false)]
-        public string TemplateId { get; set; }
+        [DataMember(Name="css", EmitDefaultValue=false)]
+        public string Css { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Metadata
+        /// </summary>
+        [DataMember(Name="metadata", EmitDefaultValue=false)]
+        public Object Metadata { get; set; }
 
         /// <summary>
         /// Gets or Sets Test
@@ -89,22 +74,16 @@ namespace FormApi.Client.Model
         public Object Data { get; set; }
 
         /// <summary>
+        /// Gets or Sets TemplateId
+        /// </summary>
+        [DataMember(Name="template_id", EmitDefaultValue=false)]
+        public string TemplateId { get; set; }
+
+        /// <summary>
         /// Gets or Sets Html
         /// </summary>
         [DataMember(Name="html", EmitDefaultValue=false)]
         public string Html { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Css
-        /// </summary>
-        [DataMember(Name="css", EmitDefaultValue=false)]
-        public string Css { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Metadata
-        /// </summary>
-        [DataMember(Name="metadata", EmitDefaultValue=false)]
-        public Object Metadata { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -113,13 +92,13 @@ namespace FormApi.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreateSubmissionDataBatchRequest {\n");
-            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
-            sb.Append("  Test: ").Append(Test).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Html: ").Append(Html).Append("\n");
+            sb.Append("class SubmissionDataBatchRequest {\n");
             sb.Append("  Css: ").Append(Css).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  Test: ").Append(Test).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
+            sb.Append("  Html: ").Append(Html).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,24 +119,29 @@ namespace FormApi.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreateSubmissionDataBatchRequest);
+            return this.Equals(input as SubmissionDataBatchRequest);
         }
 
         /// <summary>
-        /// Returns true if CreateSubmissionDataBatchRequest instances are equal
+        /// Returns true if SubmissionDataBatchRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of CreateSubmissionDataBatchRequest to be compared</param>
+        /// <param name="input">Instance of SubmissionDataBatchRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CreateSubmissionDataBatchRequest input)
+        public bool Equals(SubmissionDataBatchRequest input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.TemplateId == input.TemplateId ||
-                    (this.TemplateId != null &&
-                    this.TemplateId.Equals(input.TemplateId))
+                    this.Css == input.Css ||
+                    (this.Css != null &&
+                    this.Css.Equals(input.Css))
+                ) && 
+                (
+                    this.Metadata == input.Metadata ||
+                    (this.Metadata != null &&
+                    this.Metadata.Equals(input.Metadata))
                 ) && 
                 (
                     this.Test == input.Test ||
@@ -170,19 +154,14 @@ namespace FormApi.Client.Model
                     this.Data.Equals(input.Data))
                 ) && 
                 (
+                    this.TemplateId == input.TemplateId ||
+                    (this.TemplateId != null &&
+                    this.TemplateId.Equals(input.TemplateId))
+                ) && 
+                (
                     this.Html == input.Html ||
                     (this.Html != null &&
                     this.Html.Equals(input.Html))
-                ) && 
-                (
-                    this.Css == input.Css ||
-                    (this.Css != null &&
-                    this.Css.Equals(input.Css))
-                ) && 
-                (
-                    this.Metadata == input.Metadata ||
-                    (this.Metadata != null &&
-                    this.Metadata.Equals(input.Metadata))
                 );
         }
 
@@ -195,18 +174,18 @@ namespace FormApi.Client.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TemplateId != null)
-                    hashCode = hashCode * 59 + this.TemplateId.GetHashCode();
-                if (this.Test != null)
-                    hashCode = hashCode * 59 + this.Test.GetHashCode();
-                if (this.Data != null)
-                    hashCode = hashCode * 59 + this.Data.GetHashCode();
-                if (this.Html != null)
-                    hashCode = hashCode * 59 + this.Html.GetHashCode();
                 if (this.Css != null)
                     hashCode = hashCode * 59 + this.Css.GetHashCode();
                 if (this.Metadata != null)
                     hashCode = hashCode * 59 + this.Metadata.GetHashCode();
+                if (this.Test != null)
+                    hashCode = hashCode * 59 + this.Test.GetHashCode();
+                if (this.Data != null)
+                    hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.TemplateId != null)
+                    hashCode = hashCode * 59 + this.TemplateId.GetHashCode();
+                if (this.Html != null)
+                    hashCode = hashCode * 59 + this.Html.GetHashCode();
                 return hashCode;
             }
         }

@@ -25,39 +25,39 @@ using OpenAPIDateConverter = FormApi.Client.Client.OpenAPIDateConverter;
 namespace FormApi.Client.Model
 {
     /// <summary>
-    /// CreateSubmissionDataBatchV1
+    /// CombinePdfsData
     /// </summary>
     [DataContract]
-    public partial class CreateSubmissionDataBatchV1 :  IEquatable<CreateSubmissionDataBatchV1>, IValidatableObject
+    public partial class CombinePdfsData :  IEquatable<CombinePdfsData>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSubmissionDataBatchV1" /> class.
+        /// Initializes a new instance of the <see cref="CombinePdfsData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateSubmissionDataBatchV1() { }
+        protected CombinePdfsData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSubmissionDataBatchV1" /> class.
+        /// Initializes a new instance of the <see cref="CombinePdfsData" /> class.
         /// </summary>
         /// <param name="test">test.</param>
-        /// <param name="data">data (required).</param>
-        /// <param name="html">html.</param>
-        /// <param name="css">css.</param>
+        /// <param name="sourcePdfs">sourcePdfs (required).</param>
         /// <param name="metadata">metadata.</param>
-        public CreateSubmissionDataBatchV1(bool? test = default(bool?), Object data = default(Object), string html = default(string), string css = default(string), Object metadata = default(Object))
+        /// <param name="expiresIn">expiresIn.</param>
+        /// <param name="deleteCustomFiles">deleteCustomFiles.</param>
+        public CombinePdfsData(bool? test = default(bool?), List<Object> sourcePdfs = default(List<Object>), Object metadata = default(Object), int? expiresIn = default(int?), bool? deleteCustomFiles = default(bool?))
         {
-            // to ensure "data" is required (not null)
-            if (data == null)
+            // to ensure "sourcePdfs" is required (not null)
+            if (sourcePdfs == null)
             {
-                throw new InvalidDataException("data is a required property for CreateSubmissionDataBatchV1 and cannot be null");
+                throw new InvalidDataException("sourcePdfs is a required property for CombinePdfsData and cannot be null");
             }
             else
             {
-                this.Data = data;
+                this.SourcePdfs = sourcePdfs;
             }
             this.Test = test;
-            this.Html = html;
-            this.Css = css;
             this.Metadata = metadata;
+            this.ExpiresIn = expiresIn;
+            this.DeleteCustomFiles = deleteCustomFiles;
         }
         
         /// <summary>
@@ -67,22 +67,10 @@ namespace FormApi.Client.Model
         public bool? Test { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// Gets or Sets SourcePdfs
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public Object Data { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Html
-        /// </summary>
-        [DataMember(Name="html", EmitDefaultValue=false)]
-        public string Html { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Css
-        /// </summary>
-        [DataMember(Name="css", EmitDefaultValue=false)]
-        public string Css { get; set; }
+        [DataMember(Name="source_pdfs", EmitDefaultValue=false)]
+        public List<Object> SourcePdfs { get; set; }
 
         /// <summary>
         /// Gets or Sets Metadata
@@ -91,18 +79,30 @@ namespace FormApi.Client.Model
         public Object Metadata { get; set; }
 
         /// <summary>
+        /// Gets or Sets ExpiresIn
+        /// </summary>
+        [DataMember(Name="expires_in", EmitDefaultValue=false)]
+        public int? ExpiresIn { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DeleteCustomFiles
+        /// </summary>
+        [DataMember(Name="delete_custom_files", EmitDefaultValue=false)]
+        public bool? DeleteCustomFiles { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreateSubmissionDataBatchV1 {\n");
+            sb.Append("class CombinePdfsData {\n");
             sb.Append("  Test: ").Append(Test).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Html: ").Append(Html).Append("\n");
-            sb.Append("  Css: ").Append(Css).Append("\n");
+            sb.Append("  SourcePdfs: ").Append(SourcePdfs).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  ExpiresIn: ").Append(ExpiresIn).Append("\n");
+            sb.Append("  DeleteCustomFiles: ").Append(DeleteCustomFiles).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,15 +123,15 @@ namespace FormApi.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreateSubmissionDataBatchV1);
+            return this.Equals(input as CombinePdfsData);
         }
 
         /// <summary>
-        /// Returns true if CreateSubmissionDataBatchV1 instances are equal
+        /// Returns true if CombinePdfsData instances are equal
         /// </summary>
-        /// <param name="input">Instance of CreateSubmissionDataBatchV1 to be compared</param>
+        /// <param name="input">Instance of CombinePdfsData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CreateSubmissionDataBatchV1 input)
+        public bool Equals(CombinePdfsData input)
         {
             if (input == null)
                 return false;
@@ -143,24 +143,24 @@ namespace FormApi.Client.Model
                     this.Test.Equals(input.Test))
                 ) && 
                 (
-                    this.Data == input.Data ||
-                    (this.Data != null &&
-                    this.Data.Equals(input.Data))
-                ) && 
-                (
-                    this.Html == input.Html ||
-                    (this.Html != null &&
-                    this.Html.Equals(input.Html))
-                ) && 
-                (
-                    this.Css == input.Css ||
-                    (this.Css != null &&
-                    this.Css.Equals(input.Css))
+                    this.SourcePdfs == input.SourcePdfs ||
+                    this.SourcePdfs != null &&
+                    this.SourcePdfs.SequenceEqual(input.SourcePdfs)
                 ) && 
                 (
                     this.Metadata == input.Metadata ||
                     (this.Metadata != null &&
                     this.Metadata.Equals(input.Metadata))
+                ) && 
+                (
+                    this.ExpiresIn == input.ExpiresIn ||
+                    (this.ExpiresIn != null &&
+                    this.ExpiresIn.Equals(input.ExpiresIn))
+                ) && 
+                (
+                    this.DeleteCustomFiles == input.DeleteCustomFiles ||
+                    (this.DeleteCustomFiles != null &&
+                    this.DeleteCustomFiles.Equals(input.DeleteCustomFiles))
                 );
         }
 
@@ -175,14 +175,14 @@ namespace FormApi.Client.Model
                 int hashCode = 41;
                 if (this.Test != null)
                     hashCode = hashCode * 59 + this.Test.GetHashCode();
-                if (this.Data != null)
-                    hashCode = hashCode * 59 + this.Data.GetHashCode();
-                if (this.Html != null)
-                    hashCode = hashCode * 59 + this.Html.GetHashCode();
-                if (this.Css != null)
-                    hashCode = hashCode * 59 + this.Css.GetHashCode();
+                if (this.SourcePdfs != null)
+                    hashCode = hashCode * 59 + this.SourcePdfs.GetHashCode();
                 if (this.Metadata != null)
                     hashCode = hashCode * 59 + this.Metadata.GetHashCode();
+                if (this.ExpiresIn != null)
+                    hashCode = hashCode * 59 + this.ExpiresIn.GetHashCode();
+                if (this.DeleteCustomFiles != null)
+                    hashCode = hashCode * 59 + this.DeleteCustomFiles.GetHashCode();
                 return hashCode;
             }
         }

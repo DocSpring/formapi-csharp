@@ -67,16 +67,18 @@ namespace FormApi.Client.Model
         /// <param name="metadata">metadata.</param>
         /// <param name="expired">expired.</param>
         /// <param name="expiresAt">expiresAt.</param>
+        /// <param name="sourcePdfs">sourcePdfs.</param>
         /// <param name="downloadUrl">downloadUrl.</param>
         /// <param name="submissionIds">submissionIds.</param>
         /// <param name="id">id.</param>
         /// <param name="state">state.</param>
         /// <param name="actions">actions.</param>
-        public CombinedSubmission(Object metadata = default(Object), bool? expired = default(bool?), string expiresAt = default(string), string downloadUrl = default(string), List<string> submissionIds = default(List<string>), string id = default(string), StateEnum? state = default(StateEnum?), List<CombinedSubmissionAction> actions = default(List<CombinedSubmissionAction>))
+        public CombinedSubmission(Object metadata = default(Object), bool? expired = default(bool?), string expiresAt = default(string), List<Object> sourcePdfs = default(List<Object>), string downloadUrl = default(string), List<string> submissionIds = default(List<string>), string id = default(string), StateEnum? state = default(StateEnum?), List<CombinedSubmissionAction> actions = default(List<CombinedSubmissionAction>))
         {
             this.Metadata = metadata;
             this.Expired = expired;
             this.ExpiresAt = expiresAt;
+            this.SourcePdfs = sourcePdfs;
             this.DownloadUrl = downloadUrl;
             this.SubmissionIds = submissionIds;
             this.Id = id;
@@ -101,6 +103,12 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="expires_at", EmitDefaultValue=false)]
         public string ExpiresAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SourcePdfs
+        /// </summary>
+        [DataMember(Name="source_pdfs", EmitDefaultValue=false)]
+        public List<Object> SourcePdfs { get; set; }
 
         /// <summary>
         /// Gets or Sets DownloadUrl
@@ -138,6 +146,7 @@ namespace FormApi.Client.Model
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Expired: ").Append(Expired).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
+            sb.Append("  SourcePdfs: ").Append(SourcePdfs).Append("\n");
             sb.Append("  DownloadUrl: ").Append(DownloadUrl).Append("\n");
             sb.Append("  SubmissionIds: ").Append(SubmissionIds).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -193,6 +202,11 @@ namespace FormApi.Client.Model
                     this.ExpiresAt.Equals(input.ExpiresAt))
                 ) && 
                 (
+                    this.SourcePdfs == input.SourcePdfs ||
+                    this.SourcePdfs != null &&
+                    this.SourcePdfs.SequenceEqual(input.SourcePdfs)
+                ) && 
+                (
                     this.DownloadUrl == input.DownloadUrl ||
                     (this.DownloadUrl != null &&
                     this.DownloadUrl.Equals(input.DownloadUrl))
@@ -234,6 +248,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.Expired.GetHashCode();
                 if (this.ExpiresAt != null)
                     hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
+                if (this.SourcePdfs != null)
+                    hashCode = hashCode * 59 + this.SourcePdfs.GetHashCode();
                 if (this.DownloadUrl != null)
                     hashCode = hashCode * 59 + this.DownloadUrl.GetHashCode();
                 if (this.SubmissionIds != null)
