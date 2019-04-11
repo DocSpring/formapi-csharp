@@ -75,28 +75,12 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'ExpirationInterval'
         }
         /// <summary>
-        /// Test the property 'PublicWebForm'
-        /// </summary>
-        [Test]
-        public void PublicWebFormTest()
-        {
-            // TODO unit test for the property 'PublicWebForm'
-        }
-        /// <summary>
         /// Test the property 'WebhookUrl'
         /// </summary>
         [Test]
         public void WebhookUrlTest()
         {
             // TODO unit test for the property 'WebhookUrl'
-        }
-        /// <summary>
-        /// Test the property 'ExpireSubmissions'
-        /// </summary>
-        [Test]
-        public void ExpireSubmissionsTest()
-        {
-            // TODO unit test for the property 'ExpireSubmissions'
         }
         /// <summary>
         /// Test the property 'ExpireAfter'
@@ -123,14 +107,6 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'Document'
         }
         /// <summary>
-        /// Test the property 'Name'
-        /// </summary>
-        [Test]
-        public void NameTest()
-        {
-            // TODO unit test for the property 'Name'
-        }
-        /// <summary>
         /// Test the property 'PublicSubmissions'
         /// </summary>
         [Test]
@@ -147,20 +123,52 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'SlackWebhookUrl'
         }
         /// <summary>
-        /// Test the property 'RedirectUrl'
-        /// </summary>
-        [Test]
-        public void RedirectUrlTest()
-        {
-            // TODO unit test for the property 'RedirectUrl'
-        }
-        /// <summary>
         /// Test the property 'BlockchainTimestampVerification'
         /// </summary>
         [Test]
         public void BlockchainTimestampVerificationTest()
         {
             // TODO unit test for the property 'BlockchainTimestampVerification'
+        }
+        /// <summary>
+        /// Test the property 'PublicWebForm'
+        /// </summary>
+        [Test]
+        public void PublicWebFormTest()
+        {
+            // TODO unit test for the property 'PublicWebForm'
+        }
+        /// <summary>
+        /// Test the property 'EditableSubmissions'
+        /// </summary>
+        [Test]
+        public void EditableSubmissionsTest()
+        {
+            // TODO unit test for the property 'EditableSubmissions'
+        }
+        /// <summary>
+        /// Test the property 'ExpireSubmissions'
+        /// </summary>
+        [Test]
+        public void ExpireSubmissionsTest()
+        {
+            // TODO unit test for the property 'ExpireSubmissions'
+        }
+        /// <summary>
+        /// Test the property 'Name'
+        /// </summary>
+        [Test]
+        public void NameTest()
+        {
+            // TODO unit test for the property 'Name'
+        }
+        /// <summary>
+        /// Test the property 'RedirectUrl'
+        /// </summary>
+        [Test]
+        public void RedirectUrlTest()
+        {
+            // TODO unit test for the property 'RedirectUrl'
         }
 
     }

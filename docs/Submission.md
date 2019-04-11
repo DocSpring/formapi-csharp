@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **Test** | **bool?** |  | 
+**Editable** | **bool?** |  | [optional] 
 **Expired** | **bool?** |  | 
 **ExpiresAt** | **string** |  | [optional] 
 **ProcessedAt** | **string** |  | [optional] 

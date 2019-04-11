@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **SlackWebhookUrl** | **string** |  | [optional] 
 **BlockchainTimestampVerification** | **bool?** |  | [optional] 
 **PublicWebForm** | **bool?** |  | [optional] 
+**EditableSubmissions** | **bool?** |  | [optional] 
 **ExpireSubmissions** | **bool?** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **TemplateType** | **string** |  | [optional] 

@@ -131,6 +131,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'PublicWebForm'
         }
         /// <summary>
+        /// Test the property 'EditableSubmissions'
+        /// </summary>
+        [Test]
+        public void EditableSubmissionsTest()
+        {
+            // TODO unit test for the property 'EditableSubmissions'
+        }
+        /// <summary>
         /// Test the property 'ExpireSubmissions'
         /// </summary>
         [Test]

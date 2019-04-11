@@ -330,8 +330,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>Submission</returns>
-        Submission GetSubmission (string submissionId);
+        Submission GetSubmission (string submissionId, bool? includeData = null);
 
         /// <summary>
         /// Check the status of a PDF
@@ -341,8 +342,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>ApiResponse of Submission</returns>
-        ApiResponse<Submission> GetSubmissionWithHttpInfo (string submissionId);
+        ApiResponse<Submission> GetSubmissionWithHttpInfo (string submissionId, bool? includeData = null);
         /// <summary>
         /// Check the status of a submission batch job
         /// </summary>
@@ -781,8 +783,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>Task of Submission</returns>
-        System.Threading.Tasks.Task<Submission> GetSubmissionAsync (string submissionId);
+        System.Threading.Tasks.Task<Submission> GetSubmissionAsync (string submissionId, bool? includeData = null);
 
         /// <summary>
         /// Check the status of a PDF
@@ -792,8 +795,9 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>Task of ApiResponse (Submission)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Submission>> GetSubmissionAsyncWithHttpInfo (string submissionId);
+        System.Threading.Tasks.Task<ApiResponse<Submission>> GetSubmissionAsyncWithHttpInfo (string submissionId, bool? includeData = null);
         /// <summary>
         /// Check the status of a submission batch job
         /// </summary>
@@ -3197,10 +3201,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>Submission</returns>
-        public Submission GetSubmission (string submissionId)
+        public Submission GetSubmission (string submissionId, bool? includeData = null)
         {
-             ApiResponse<Submission> localVarResponse = GetSubmissionWithHttpInfo(submissionId);
+             ApiResponse<Submission> localVarResponse = GetSubmissionWithHttpInfo(submissionId, includeData);
              return localVarResponse.Data;
         }
 
@@ -3209,8 +3214,9 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>ApiResponse of Submission</returns>
-        public ApiResponse< Submission > GetSubmissionWithHttpInfo (string submissionId)
+        public ApiResponse< Submission > GetSubmissionWithHttpInfo (string submissionId, bool? includeData = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
@@ -3238,6 +3244,7 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+            if (includeData != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "include_data", includeData)); // query parameter
 
             // authentication (api_token_basic) required
             // http basic authentication required
@@ -3269,10 +3276,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>Task of Submission</returns>
-        public async System.Threading.Tasks.Task<Submission> GetSubmissionAsync (string submissionId)
+        public async System.Threading.Tasks.Task<Submission> GetSubmissionAsync (string submissionId, bool? includeData = null)
         {
-             ApiResponse<Submission> localVarResponse = await GetSubmissionAsyncWithHttpInfo(submissionId);
+             ApiResponse<Submission> localVarResponse = await GetSubmissionAsyncWithHttpInfo(submissionId, includeData);
              return localVarResponse.Data;
 
         }
@@ -3282,8 +3290,9 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="includeData"> (optional)</param>
         /// <returns>Task of ApiResponse (Submission)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Submission>> GetSubmissionAsyncWithHttpInfo (string submissionId)
+        public async System.Threading.Tasks.Task<ApiResponse<Submission>> GetSubmissionAsyncWithHttpInfo (string submissionId, bool? includeData = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
@@ -3311,6 +3320,7 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+            if (includeData != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "include_data", includeData)); // query parameter
 
             // authentication (api_token_basic) required
             // http basic authentication required

@@ -913,7 +913,7 @@ This endpoint does not need any parameter.
 
 <a name="getsubmission"></a>
 # **GetSubmission**
-> Submission GetSubmission (string submissionId)
+> Submission GetSubmission (string submissionId, bool? includeData = null)
 
 Check the status of a PDF
 
@@ -937,11 +937,12 @@ namespace Example
 
             var apiInstance = new PDFApi();
             var submissionId = sub_000000000000000001;  // string | 
+            var includeData = false;  // bool? |  (optional) 
 
             try
             {
                 // Check the status of a PDF
-                Submission result = apiInstance.GetSubmission(submissionId);
+                Submission result = apiInstance.GetSubmission(submissionId, includeData);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -958,6 +959,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submissionId** | **string**|  | 
+ **includeData** | **bool?**|  | [optional] 
 
 ### Return type
 

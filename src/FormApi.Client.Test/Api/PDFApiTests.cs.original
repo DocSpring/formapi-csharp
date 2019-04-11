@@ -242,7 +242,8 @@ namespace FormApi.Client.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string submissionId = null;
-            //var response = instance.GetSubmission(submissionId);
+            //bool? includeData = null;
+            //var response = instance.GetSubmission(submissionId, includeData);
             //Assert.IsInstanceOf<Submission> (response, "response is Submission");
         }
         

@@ -72,12 +72,13 @@ namespace FormApi.Client.Model
         /// <param name="slackWebhookUrl">slackWebhookUrl.</param>
         /// <param name="blockchainTimestampVerification">blockchainTimestampVerification.</param>
         /// <param name="publicWebForm">publicWebForm.</param>
+        /// <param name="editableSubmissions">editableSubmissions.</param>
         /// <param name="expireSubmissions">expireSubmissions.</param>
         /// <param name="name">name.</param>
         /// <param name="templateType">templateType.</param>
         /// <param name="id">id.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public PendingTemplate(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? blockchainTimestampVerification = default(bool?), bool? publicWebForm = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), string redirectUrl = default(string))
+        public PendingTemplate(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? blockchainTimestampVerification = default(bool?), bool? publicWebForm = default(bool?), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), string redirectUrl = default(string))
         {
             this.ExpirationInterval = expirationInterval;
             this.WebhookUrl = webhookUrl;
@@ -87,6 +88,7 @@ namespace FormApi.Client.Model
             this.SlackWebhookUrl = slackWebhookUrl;
             this.BlockchainTimestampVerification = blockchainTimestampVerification;
             this.PublicWebForm = publicWebForm;
+            this.EditableSubmissions = editableSubmissions;
             this.ExpireSubmissions = expireSubmissions;
             this.Name = name;
             this.TemplateType = templateType;
@@ -138,6 +140,12 @@ namespace FormApi.Client.Model
         public bool? PublicWebForm { get; set; }
 
         /// <summary>
+        /// Gets or Sets EditableSubmissions
+        /// </summary>
+        [DataMember(Name="editable_submissions", EmitDefaultValue=false)]
+        public bool? EditableSubmissions { get; set; }
+
+        /// <summary>
         /// Gets or Sets ExpireSubmissions
         /// </summary>
         [DataMember(Name="expire_submissions", EmitDefaultValue=false)]
@@ -183,6 +191,7 @@ namespace FormApi.Client.Model
             sb.Append("  SlackWebhookUrl: ").Append(SlackWebhookUrl).Append("\n");
             sb.Append("  BlockchainTimestampVerification: ").Append(BlockchainTimestampVerification).Append("\n");
             sb.Append("  PublicWebForm: ").Append(PublicWebForm).Append("\n");
+            sb.Append("  EditableSubmissions: ").Append(EditableSubmissions).Append("\n");
             sb.Append("  ExpireSubmissions: ").Append(ExpireSubmissions).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  TemplateType: ").Append(TemplateType).Append("\n");
@@ -263,6 +272,11 @@ namespace FormApi.Client.Model
                     this.PublicWebForm.Equals(input.PublicWebForm))
                 ) && 
                 (
+                    this.EditableSubmissions == input.EditableSubmissions ||
+                    (this.EditableSubmissions != null &&
+                    this.EditableSubmissions.Equals(input.EditableSubmissions))
+                ) && 
+                (
                     this.ExpireSubmissions == input.ExpireSubmissions ||
                     (this.ExpireSubmissions != null &&
                     this.ExpireSubmissions.Equals(input.ExpireSubmissions))
@@ -314,6 +328,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.BlockchainTimestampVerification.GetHashCode();
                 if (this.PublicWebForm != null)
                     hashCode = hashCode * 59 + this.PublicWebForm.GetHashCode();
+                if (this.EditableSubmissions != null)
+                    hashCode = hashCode * 59 + this.EditableSubmissions.GetHashCode();
                 if (this.ExpireSubmissions != null)
                     hashCode = hashCode * 59 + this.ExpireSubmissions.GetHashCode();
                 if (this.Name != null)

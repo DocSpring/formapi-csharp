@@ -83,6 +83,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'Test'
         }
         /// <summary>
+        /// Test the property 'Editable'
+        /// </summary>
+        [Test]
+        public void EditableTest()
+        {
+            // TODO unit test for the property 'Editable'
+        }
+        /// <summary>
         /// Test the property 'Expired'
         /// </summary>
         [Test]

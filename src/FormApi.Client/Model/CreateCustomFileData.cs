@@ -130,6 +130,12 @@ namespace FormApi.Client.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // CacheId (string) minLength
+            if(this.CacheId != null && this.CacheId.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CacheId, length must be greater than 1.", new [] { "CacheId" });
+            }
+
             yield break;
         }
     }

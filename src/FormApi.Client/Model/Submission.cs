@@ -76,7 +76,13 @@ namespace FormApi.Client.Model
             /// Enum Waitingfordatarequests for value: waiting_for_data_requests
             /// </summary>
             [EnumMember(Value = "waiting_for_data_requests")]
-            Waitingfordatarequests = 7
+            Waitingfordatarequests = 7,
+
+            /// <summary>
+            /// Enum Liquidsyntaxerror for value: liquid_syntax_error
+            /// </summary>
+            [EnumMember(Value = "liquid_syntax_error")]
+            Liquidsyntaxerror = 8
 
         }
 
@@ -95,6 +101,7 @@ namespace FormApi.Client.Model
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="test">test (required).</param>
+        /// <param name="editable">editable.</param>
         /// <param name="expired">expired (required).</param>
         /// <param name="expiresAt">expiresAt.</param>
         /// <param name="processedAt">processedAt.</param>
@@ -104,7 +111,7 @@ namespace FormApi.Client.Model
         /// <param name="batchId">batchId.</param>
         /// <param name="dataRequests">dataRequests.</param>
         /// <param name="actions">actions.</param>
-        public Submission(string id = default(string), bool? test = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
+        public Submission(string id = default(string), bool? test = default(bool?), bool? editable = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -142,6 +149,7 @@ namespace FormApi.Client.Model
             {
                 this.State = state;
             }
+            this.Editable = editable;
             this.ExpiresAt = expiresAt;
             this.ProcessedAt = processedAt;
             this.Metadata = metadata;
@@ -162,6 +170,12 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="test", EmitDefaultValue=false)]
         public bool? Test { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Editable
+        /// </summary>
+        [DataMember(Name="editable", EmitDefaultValue=false)]
+        public bool? Editable { get; set; }
 
         /// <summary>
         /// Gets or Sets Expired
@@ -222,6 +236,7 @@ namespace FormApi.Client.Model
             sb.Append("class Submission {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Test: ").Append(Test).Append("\n");
+            sb.Append("  Editable: ").Append(Editable).Append("\n");
             sb.Append("  Expired: ").Append(Expired).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  ProcessedAt: ").Append(ProcessedAt).Append("\n");
@@ -274,6 +289,11 @@ namespace FormApi.Client.Model
                     this.Test == input.Test ||
                     (this.Test != null &&
                     this.Test.Equals(input.Test))
+                ) && 
+                (
+                    this.Editable == input.Editable ||
+                    (this.Editable != null &&
+                    this.Editable.Equals(input.Editable))
                 ) && 
                 (
                     this.Expired == input.Expired ||
@@ -335,6 +355,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Test != null)
                     hashCode = hashCode * 59 + this.Test.GetHashCode();
+                if (this.Editable != null)
+                    hashCode = hashCode * 59 + this.Editable.GetHashCode();
                 if (this.Expired != null)
                     hashCode = hashCode * 59 + this.Expired.GetHashCode();
                 if (this.ExpiresAt != null)
