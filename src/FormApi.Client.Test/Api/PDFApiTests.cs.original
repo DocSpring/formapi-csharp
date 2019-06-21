@@ -285,15 +285,16 @@ namespace FormApi.Client.Test
         }
         
         /// <summary>
-        /// Test GetTemplates
+        /// Test ListTemplates
         /// </summary>
         [Test]
-        public void GetTemplatesTest()
+        public void ListTemplatesTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //string query = null;
             //int? page = null;
             //int? perPage = null;
-            //var response = instance.GetTemplates(page, perPage);
+            //var response = instance.ListTemplates(query, page, perPage);
             //Assert.IsInstanceOf<List<Template>> (response, "response is List<Template>");
         }
         

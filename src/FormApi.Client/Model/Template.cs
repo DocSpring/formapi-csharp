@@ -70,7 +70,6 @@ namespace FormApi.Client.Model
         /// <param name="allowAdditionalProperties">allowAdditionalProperties.</param>
         /// <param name="publicSubmissions">publicSubmissions.</param>
         /// <param name="slackWebhookUrl">slackWebhookUrl.</param>
-        /// <param name="blockchainTimestampVerification">blockchainTimestampVerification.</param>
         /// <param name="publicWebForm">publicWebForm.</param>
         /// <param name="editableSubmissions">editableSubmissions.</param>
         /// <param name="expireSubmissions">expireSubmissions.</param>
@@ -79,7 +78,7 @@ namespace FormApi.Client.Model
         /// <param name="id">id.</param>
         /// <param name="pageDimensions">pageDimensions.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public Template(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? blockchainTimestampVerification = default(bool?), bool? publicWebForm = default(bool?), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), List<List<decimal?>> pageDimensions = default(List<List<decimal?>>), string redirectUrl = default(string))
+        public Template(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? publicWebForm = default(bool?), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), List<List<decimal?>> pageDimensions = default(List<List<decimal?>>), string redirectUrl = default(string))
         {
             this.ExpirationInterval = expirationInterval;
             this.WebhookUrl = webhookUrl;
@@ -87,7 +86,6 @@ namespace FormApi.Client.Model
             this.AllowAdditionalProperties = allowAdditionalProperties;
             this.PublicSubmissions = publicSubmissions;
             this.SlackWebhookUrl = slackWebhookUrl;
-            this.BlockchainTimestampVerification = blockchainTimestampVerification;
             this.PublicWebForm = publicWebForm;
             this.EditableSubmissions = editableSubmissions;
             this.ExpireSubmissions = expireSubmissions;
@@ -128,12 +126,6 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="slack_webhook_url", EmitDefaultValue=false)]
         public string SlackWebhookUrl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets BlockchainTimestampVerification
-        /// </summary>
-        [DataMember(Name="blockchain_timestamp_verification", EmitDefaultValue=false)]
-        public bool? BlockchainTimestampVerification { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicWebForm
@@ -197,7 +189,6 @@ namespace FormApi.Client.Model
             sb.Append("  AllowAdditionalProperties: ").Append(AllowAdditionalProperties).Append("\n");
             sb.Append("  PublicSubmissions: ").Append(PublicSubmissions).Append("\n");
             sb.Append("  SlackWebhookUrl: ").Append(SlackWebhookUrl).Append("\n");
-            sb.Append("  BlockchainTimestampVerification: ").Append(BlockchainTimestampVerification).Append("\n");
             sb.Append("  PublicWebForm: ").Append(PublicWebForm).Append("\n");
             sb.Append("  EditableSubmissions: ").Append(EditableSubmissions).Append("\n");
             sb.Append("  ExpireSubmissions: ").Append(ExpireSubmissions).Append("\n");
@@ -271,11 +262,6 @@ namespace FormApi.Client.Model
                     this.SlackWebhookUrl.Equals(input.SlackWebhookUrl))
                 ) && 
                 (
-                    this.BlockchainTimestampVerification == input.BlockchainTimestampVerification ||
-                    (this.BlockchainTimestampVerification != null &&
-                    this.BlockchainTimestampVerification.Equals(input.BlockchainTimestampVerification))
-                ) && 
-                (
                     this.PublicWebForm == input.PublicWebForm ||
                     (this.PublicWebForm != null &&
                     this.PublicWebForm.Equals(input.PublicWebForm))
@@ -338,8 +324,6 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.PublicSubmissions.GetHashCode();
                 if (this.SlackWebhookUrl != null)
                     hashCode = hashCode * 59 + this.SlackWebhookUrl.GetHashCode();
-                if (this.BlockchainTimestampVerification != null)
-                    hashCode = hashCode * 59 + this.BlockchainTimestampVerification.GetHashCode();
                 if (this.PublicWebForm != null)
                     hashCode = hashCode * 59 + this.PublicWebForm.GetHashCode();
                 if (this.EditableSubmissions != null)

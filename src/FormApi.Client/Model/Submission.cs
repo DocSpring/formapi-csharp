@@ -82,7 +82,19 @@ namespace FormApi.Client.Model
             /// Enum Liquidsyntaxerror for value: liquid_syntax_error
             /// </summary>
             [EnumMember(Value = "liquid_syntax_error")]
-            Liquidsyntaxerror = 8
+            Liquidsyntaxerror = 8,
+
+            /// <summary>
+            /// Enum Accountsuspended for value: account_suspended
+            /// </summary>
+            [EnumMember(Value = "account_suspended")]
+            Accountsuspended = 9,
+
+            /// <summary>
+            /// Enum Licenserevoked for value: license_revoked
+            /// </summary>
+            [EnumMember(Value = "license_revoked")]
+            Licenserevoked = 10
 
         }
 
@@ -100,6 +112,7 @@ namespace FormApi.Client.Model
         /// Initializes a new instance of the <see cref="Submission" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="templateId">templateId.</param>
         /// <param name="test">test (required).</param>
         /// <param name="editable">editable.</param>
         /// <param name="expired">expired (required).</param>
@@ -111,7 +124,7 @@ namespace FormApi.Client.Model
         /// <param name="batchId">batchId.</param>
         /// <param name="dataRequests">dataRequests.</param>
         /// <param name="actions">actions.</param>
-        public Submission(string id = default(string), bool? test = default(bool?), bool? editable = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
+        public Submission(string id = default(string), string templateId = default(string), bool? test = default(bool?), bool? editable = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -149,6 +162,7 @@ namespace FormApi.Client.Model
             {
                 this.State = state;
             }
+            this.TemplateId = templateId;
             this.Editable = editable;
             this.ExpiresAt = expiresAt;
             this.ProcessedAt = processedAt;
@@ -164,6 +178,12 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TemplateId
+        /// </summary>
+        [DataMember(Name="template_id", EmitDefaultValue=false)]
+        public string TemplateId { get; set; }
 
         /// <summary>
         /// Gets or Sets Test
@@ -235,6 +255,7 @@ namespace FormApi.Client.Model
             var sb = new StringBuilder();
             sb.Append("class Submission {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  Test: ").Append(Test).Append("\n");
             sb.Append("  Editable: ").Append(Editable).Append("\n");
             sb.Append("  Expired: ").Append(Expired).Append("\n");
@@ -284,6 +305,11 @@ namespace FormApi.Client.Model
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.TemplateId == input.TemplateId ||
+                    (this.TemplateId != null &&
+                    this.TemplateId.Equals(input.TemplateId))
                 ) && 
                 (
                     this.Test == input.Test ||
@@ -353,6 +379,8 @@ namespace FormApi.Client.Model
                 int hashCode = 41;
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.TemplateId != null)
+                    hashCode = hashCode * 59 + this.TemplateId.GetHashCode();
                 if (this.Test != null)
                     hashCode = hashCode * 59 + this.Test.GetHashCode();
                 if (this.Editable != null)

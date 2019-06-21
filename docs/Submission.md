@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
+**TemplateId** | **string** |  | [optional] 
 **Test** | **bool?** |  | 
 **Editable** | **bool?** |  | [optional] 
 **Expired** | **bool?** |  | 

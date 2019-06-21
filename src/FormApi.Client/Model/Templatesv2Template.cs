@@ -65,41 +65,57 @@ namespace FormApi.Client.Model
         /// Initializes a new instance of the <see cref="Templatesv2Template" /> class.
         /// </summary>
         /// <param name="expirationInterval">expirationInterval.</param>
+        /// <param name="publicWebForm">publicWebForm.</param>
         /// <param name="webhookUrl">webhookUrl.</param>
+        /// <param name="editableSubmissions">editableSubmissions.</param>
+        /// <param name="expireSubmissions">expireSubmissions.</param>
         /// <param name="expireAfter">expireAfter.</param>
         /// <param name="allowAdditionalProperties">allowAdditionalProperties.</param>
         /// <param name="document">document.</param>
+        /// <param name="name">name.</param>
         /// <param name="publicSubmissions">publicSubmissions.</param>
         /// <param name="slackWebhookUrl">slackWebhookUrl.</param>
-        /// <param name="blockchainTimestampVerification">blockchainTimestampVerification.</param>
-        /// <param name="publicWebForm">publicWebForm.</param>
-        /// <param name="editableSubmissions">editableSubmissions.</param>
-        /// <param name="expireSubmissions">expireSubmissions.</param>
-        /// <param name="name">name.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public Templatesv2Template(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), Templatesv2TemplateDocument document = default(Templatesv2TemplateDocument), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? blockchainTimestampVerification = default(bool?), bool? publicWebForm = default(bool?), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string redirectUrl = default(string))
+        public Templatesv2Template(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), bool? publicWebForm = default(bool?), string webhookUrl = default(string), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), Templatesv2TemplateDocument document = default(Templatesv2TemplateDocument), string name = default(string), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), string redirectUrl = default(string))
         {
             this.ExpirationInterval = expirationInterval;
+            this.PublicWebForm = publicWebForm;
             this.WebhookUrl = webhookUrl;
+            this.EditableSubmissions = editableSubmissions;
+            this.ExpireSubmissions = expireSubmissions;
             this.ExpireAfter = expireAfter;
             this.AllowAdditionalProperties = allowAdditionalProperties;
             this.Document = document;
+            this.Name = name;
             this.PublicSubmissions = publicSubmissions;
             this.SlackWebhookUrl = slackWebhookUrl;
-            this.BlockchainTimestampVerification = blockchainTimestampVerification;
-            this.PublicWebForm = publicWebForm;
-            this.EditableSubmissions = editableSubmissions;
-            this.ExpireSubmissions = expireSubmissions;
-            this.Name = name;
             this.RedirectUrl = redirectUrl;
         }
         
+
+        /// <summary>
+        /// Gets or Sets PublicWebForm
+        /// </summary>
+        [DataMember(Name="public_web_form", EmitDefaultValue=false)]
+        public bool? PublicWebForm { get; set; }
 
         /// <summary>
         /// Gets or Sets WebhookUrl
         /// </summary>
         [DataMember(Name="webhook_url", EmitDefaultValue=false)]
         public string WebhookUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EditableSubmissions
+        /// </summary>
+        [DataMember(Name="editable_submissions", EmitDefaultValue=false)]
+        public bool? EditableSubmissions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExpireSubmissions
+        /// </summary>
+        [DataMember(Name="expire_submissions", EmitDefaultValue=false)]
+        public bool? ExpireSubmissions { get; set; }
 
         /// <summary>
         /// Gets or Sets ExpireAfter
@@ -120,6 +136,12 @@ namespace FormApi.Client.Model
         public Templatesv2TemplateDocument Document { get; set; }
 
         /// <summary>
+        /// Gets or Sets Name
+        /// </summary>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or Sets PublicSubmissions
         /// </summary>
         [DataMember(Name="public_submissions", EmitDefaultValue=false)]
@@ -130,36 +152,6 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="slack_webhook_url", EmitDefaultValue=false)]
         public string SlackWebhookUrl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets BlockchainTimestampVerification
-        /// </summary>
-        [DataMember(Name="blockchain_timestamp_verification", EmitDefaultValue=false)]
-        public bool? BlockchainTimestampVerification { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PublicWebForm
-        /// </summary>
-        [DataMember(Name="public_web_form", EmitDefaultValue=false)]
-        public bool? PublicWebForm { get; set; }
-
-        /// <summary>
-        /// Gets or Sets EditableSubmissions
-        /// </summary>
-        [DataMember(Name="editable_submissions", EmitDefaultValue=false)]
-        public bool? EditableSubmissions { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExpireSubmissions
-        /// </summary>
-        [DataMember(Name="expire_submissions", EmitDefaultValue=false)]
-        public bool? ExpireSubmissions { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets RedirectUrl
@@ -176,17 +168,16 @@ namespace FormApi.Client.Model
             var sb = new StringBuilder();
             sb.Append("class Templatesv2Template {\n");
             sb.Append("  ExpirationInterval: ").Append(ExpirationInterval).Append("\n");
+            sb.Append("  PublicWebForm: ").Append(PublicWebForm).Append("\n");
             sb.Append("  WebhookUrl: ").Append(WebhookUrl).Append("\n");
+            sb.Append("  EditableSubmissions: ").Append(EditableSubmissions).Append("\n");
+            sb.Append("  ExpireSubmissions: ").Append(ExpireSubmissions).Append("\n");
             sb.Append("  ExpireAfter: ").Append(ExpireAfter).Append("\n");
             sb.Append("  AllowAdditionalProperties: ").Append(AllowAdditionalProperties).Append("\n");
             sb.Append("  Document: ").Append(Document).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PublicSubmissions: ").Append(PublicSubmissions).Append("\n");
             sb.Append("  SlackWebhookUrl: ").Append(SlackWebhookUrl).Append("\n");
-            sb.Append("  BlockchainTimestampVerification: ").Append(BlockchainTimestampVerification).Append("\n");
-            sb.Append("  PublicWebForm: ").Append(PublicWebForm).Append("\n");
-            sb.Append("  EditableSubmissions: ").Append(EditableSubmissions).Append("\n");
-            sb.Append("  ExpireSubmissions: ").Append(ExpireSubmissions).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -228,9 +219,24 @@ namespace FormApi.Client.Model
                     this.ExpirationInterval.Equals(input.ExpirationInterval))
                 ) && 
                 (
+                    this.PublicWebForm == input.PublicWebForm ||
+                    (this.PublicWebForm != null &&
+                    this.PublicWebForm.Equals(input.PublicWebForm))
+                ) && 
+                (
                     this.WebhookUrl == input.WebhookUrl ||
                     (this.WebhookUrl != null &&
                     this.WebhookUrl.Equals(input.WebhookUrl))
+                ) && 
+                (
+                    this.EditableSubmissions == input.EditableSubmissions ||
+                    (this.EditableSubmissions != null &&
+                    this.EditableSubmissions.Equals(input.EditableSubmissions))
+                ) && 
+                (
+                    this.ExpireSubmissions == input.ExpireSubmissions ||
+                    (this.ExpireSubmissions != null &&
+                    this.ExpireSubmissions.Equals(input.ExpireSubmissions))
                 ) && 
                 (
                     this.ExpireAfter == input.ExpireAfter ||
@@ -248,6 +254,11 @@ namespace FormApi.Client.Model
                     this.Document.Equals(input.Document))
                 ) && 
                 (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
                     this.PublicSubmissions == input.PublicSubmissions ||
                     (this.PublicSubmissions != null &&
                     this.PublicSubmissions.Equals(input.PublicSubmissions))
@@ -256,31 +267,6 @@ namespace FormApi.Client.Model
                     this.SlackWebhookUrl == input.SlackWebhookUrl ||
                     (this.SlackWebhookUrl != null &&
                     this.SlackWebhookUrl.Equals(input.SlackWebhookUrl))
-                ) && 
-                (
-                    this.BlockchainTimestampVerification == input.BlockchainTimestampVerification ||
-                    (this.BlockchainTimestampVerification != null &&
-                    this.BlockchainTimestampVerification.Equals(input.BlockchainTimestampVerification))
-                ) && 
-                (
-                    this.PublicWebForm == input.PublicWebForm ||
-                    (this.PublicWebForm != null &&
-                    this.PublicWebForm.Equals(input.PublicWebForm))
-                ) && 
-                (
-                    this.EditableSubmissions == input.EditableSubmissions ||
-                    (this.EditableSubmissions != null &&
-                    this.EditableSubmissions.Equals(input.EditableSubmissions))
-                ) && 
-                (
-                    this.ExpireSubmissions == input.ExpireSubmissions ||
-                    (this.ExpireSubmissions != null &&
-                    this.ExpireSubmissions.Equals(input.ExpireSubmissions))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
                 ) && 
                 (
                     this.RedirectUrl == input.RedirectUrl ||
@@ -300,28 +286,26 @@ namespace FormApi.Client.Model
                 int hashCode = 41;
                 if (this.ExpirationInterval != null)
                     hashCode = hashCode * 59 + this.ExpirationInterval.GetHashCode();
+                if (this.PublicWebForm != null)
+                    hashCode = hashCode * 59 + this.PublicWebForm.GetHashCode();
                 if (this.WebhookUrl != null)
                     hashCode = hashCode * 59 + this.WebhookUrl.GetHashCode();
+                if (this.EditableSubmissions != null)
+                    hashCode = hashCode * 59 + this.EditableSubmissions.GetHashCode();
+                if (this.ExpireSubmissions != null)
+                    hashCode = hashCode * 59 + this.ExpireSubmissions.GetHashCode();
                 if (this.ExpireAfter != null)
                     hashCode = hashCode * 59 + this.ExpireAfter.GetHashCode();
                 if (this.AllowAdditionalProperties != null)
                     hashCode = hashCode * 59 + this.AllowAdditionalProperties.GetHashCode();
                 if (this.Document != null)
                     hashCode = hashCode * 59 + this.Document.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.PublicSubmissions != null)
                     hashCode = hashCode * 59 + this.PublicSubmissions.GetHashCode();
                 if (this.SlackWebhookUrl != null)
                     hashCode = hashCode * 59 + this.SlackWebhookUrl.GetHashCode();
-                if (this.BlockchainTimestampVerification != null)
-                    hashCode = hashCode * 59 + this.BlockchainTimestampVerification.GetHashCode();
-                if (this.PublicWebForm != null)
-                    hashCode = hashCode * 59 + this.PublicWebForm.GetHashCode();
-                if (this.EditableSubmissions != null)
-                    hashCode = hashCode * 59 + this.EditableSubmissions.GetHashCode();
-                if (this.ExpireSubmissions != null)
-                    hashCode = hashCode * 59 + this.ExpireSubmissions.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.RedirectUrl != null)
                     hashCode = hashCode * 59 + this.RedirectUrl.GetHashCode();
                 return hashCode;

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 [**GetSubmissionBatch**](PDFApi.md#getsubmissionbatch) | **GET** /submissions/batches/{submission_batch_id} | Check the status of a submission batch job
 [**GetTemplate**](PDFApi.md#gettemplate) | **GET** /templates/{template_id} | Check the status of an uploaded template
 [**GetTemplateSchema**](PDFApi.md#gettemplateschema) | **GET** /templates/{template_id}/schema | Fetch the JSON schema for a template
-[**GetTemplates**](PDFApi.md#gettemplates) | **GET** /templates | Get a list of all templates
+[**ListTemplates**](PDFApi.md#listtemplates) | **GET** /templates | Get a list of all templates
 [**TestAuthentication**](PDFApi.md#testauthentication) | **GET** /authentication | Test Authentication
 [**UpdateDataRequest**](PDFApi.md#updatedatarequest) | **PUT** /data_requests/{data_request_id} | Update a submission data request
 
@@ -1167,9 +1167,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettemplates"></a>
-# **GetTemplates**
-> List<Template> GetTemplates (int? page = null, int? perPage = null)
+<a name="listtemplates"></a>
+# **ListTemplates**
+> List<Template> ListTemplates (string query = null, int? page = null, int? perPage = null)
 
 Get a list of all templates
 
@@ -1183,7 +1183,7 @@ using FormApi.Client.Model;
 
 namespace Example
 {
-    public class GetTemplatesExample
+    public class ListTemplatesExample
     {
         public void main()
         {
@@ -1192,18 +1192,19 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new PDFApi();
+            var query = 2;  // string | Search By Name (optional) 
             var page = 2;  // int? | Default: 1 (optional) 
             var perPage = 1;  // int? | Default: 50 (optional) 
 
             try
             {
                 // Get a list of all templates
-                List&lt;Template&gt; result = apiInstance.GetTemplates(page, perPage);
+                List&lt;Template&gt; result = apiInstance.ListTemplates(query, page, perPage);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling PDFApi.GetTemplates: " + e.Message );
+                Debug.Print("Exception when calling PDFApi.ListTemplates: " + e.Message );
             }
         }
     }
@@ -1214,6 +1215,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **query** | **string**| Search By Name | [optional] 
  **page** | **int?**| Default: 1 | [optional] 
  **perPage** | **int?**| Default: 50 | [optional] 
 

@@ -115,14 +115,6 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'SlackWebhookUrl'
         }
         /// <summary>
-        /// Test the property 'BlockchainTimestampVerification'
-        /// </summary>
-        [Test]
-        public void BlockchainTimestampVerificationTest()
-        {
-            // TODO unit test for the property 'BlockchainTimestampVerification'
-        }
-        /// <summary>
         /// Test the property 'PublicWebForm'
         /// </summary>
         [Test]

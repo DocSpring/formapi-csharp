@@ -417,10 +417,11 @@ namespace FormApi.Client.Api
         /// 
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>List&lt;Template&gt;</returns>
-        List<Template> GetTemplates (int? page = null, int? perPage = null);
+        List<Template> ListTemplates (string query = null, int? page = null, int? perPage = null);
 
         /// <summary>
         /// Get a list of all templates
@@ -429,10 +430,11 @@ namespace FormApi.Client.Api
         /// 
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>ApiResponse of List&lt;Template&gt;</returns>
-        ApiResponse<List<Template>> GetTemplatesWithHttpInfo (int? page = null, int? perPage = null);
+        ApiResponse<List<Template>> ListTemplatesWithHttpInfo (string query = null, int? page = null, int? perPage = null);
         /// <summary>
         /// Test Authentication
         /// </summary>
@@ -870,10 +872,11 @@ namespace FormApi.Client.Api
         /// 
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of List&lt;Template&gt;</returns>
-        System.Threading.Tasks.Task<List<Template>> GetTemplatesAsync (int? page = null, int? perPage = null);
+        System.Threading.Tasks.Task<List<Template>> ListTemplatesAsync (string query = null, int? page = null, int? perPage = null);
 
         /// <summary>
         /// Get a list of all templates
@@ -882,10 +885,11 @@ namespace FormApi.Client.Api
         /// 
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Template&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Template>>> GetTemplatesAsyncWithHttpInfo (int? page = null, int? perPage = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Template>>> ListTemplatesAsyncWithHttpInfo (string query = null, int? page = null, int? perPage = null);
         /// <summary>
         /// Test Authentication
         /// </summary>
@@ -3792,12 +3796,13 @@ namespace FormApi.Client.Api
         /// Get a list of all templates 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>List&lt;Template&gt;</returns>
-        public List<Template> GetTemplates (int? page = null, int? perPage = null)
+        public List<Template> ListTemplates (string query = null, int? page = null, int? perPage = null)
         {
-             ApiResponse<List<Template>> localVarResponse = GetTemplatesWithHttpInfo(page, perPage);
+             ApiResponse<List<Template>> localVarResponse = ListTemplatesWithHttpInfo(query, page, perPage);
              return localVarResponse.Data;
         }
 
@@ -3805,10 +3810,11 @@ namespace FormApi.Client.Api
         /// Get a list of all templates 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>ApiResponse of List&lt;Template&gt;</returns>
-        public ApiResponse< List<Template> > GetTemplatesWithHttpInfo (int? page = null, int? perPage = null)
+        public ApiResponse< List<Template> > ListTemplatesWithHttpInfo (string query = null, int? page = null, int? perPage = null)
         {
 
             var localVarPath = "/templates";
@@ -3832,6 +3838,7 @@ namespace FormApi.Client.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (query != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "query", query)); // query parameter
             if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (perPage != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
 
@@ -3851,7 +3858,7 @@ namespace FormApi.Client.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTemplates", localVarResponse);
+                Exception exception = ExceptionFactory("ListTemplates", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3864,12 +3871,13 @@ namespace FormApi.Client.Api
         /// Get a list of all templates 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of List&lt;Template&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Template>> GetTemplatesAsync (int? page = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<List<Template>> ListTemplatesAsync (string query = null, int? page = null, int? perPage = null)
         {
-             ApiResponse<List<Template>> localVarResponse = await GetTemplatesAsyncWithHttpInfo(page, perPage);
+             ApiResponse<List<Template>> localVarResponse = await ListTemplatesAsyncWithHttpInfo(query, page, perPage);
              return localVarResponse.Data;
 
         }
@@ -3878,10 +3886,11 @@ namespace FormApi.Client.Api
         /// Get a list of all templates 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Search By Name (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Template&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Template>>> GetTemplatesAsyncWithHttpInfo (int? page = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Template>>> ListTemplatesAsyncWithHttpInfo (string query = null, int? page = null, int? perPage = null)
         {
 
             var localVarPath = "/templates";
@@ -3905,6 +3914,7 @@ namespace FormApi.Client.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (query != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "query", query)); // query parameter
             if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (perPage != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
 
@@ -3924,7 +3934,7 @@ namespace FormApi.Client.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTemplates", localVarResponse);
+                Exception exception = ExceptionFactory("ListTemplates", localVarResponse);
                 if (exception != null) throw exception;
             }
 

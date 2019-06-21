@@ -75,6 +75,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'Id'
         }
         /// <summary>
+        /// Test the property 'TemplateId'
+        /// </summary>
+        [Test]
+        public void TemplateIdTest()
+        {
+            // TODO unit test for the property 'TemplateId'
+        }
+        /// <summary>
         /// Test the property 'Test'
         /// </summary>
         [Test]
