@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **State** | **string** |  | 
 **Metadata** | **Object** |  | [optional] 
 **DownloadUrl** | **string** |  | [optional] 
+**PermanentDownloadUrl** | **string** |  | [optional] 
 **BatchId** | **string** |  | [optional] 
 **DataRequests** | [**List&lt;SubmissionDataRequest&gt;**](SubmissionDataRequest.md) |  | [optional] 
 **Actions** | [**List&lt;SubmissionAction&gt;**](SubmissionAction.md) |  | [optional] 

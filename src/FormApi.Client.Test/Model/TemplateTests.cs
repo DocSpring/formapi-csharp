@@ -83,6 +83,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'WebhookUrl'
         }
         /// <summary>
+        /// Test the property 'ParentFolderId'
+        /// </summary>
+        [Test]
+        public void ParentFolderIdTest()
+        {
+            // TODO unit test for the property 'ParentFolderId'
+        }
+        /// <summary>
         /// Test the property 'ExpireAfter'
         /// </summary>
         [Test]
@@ -113,6 +121,14 @@ namespace FormApi.Client.Test
         public void SlackWebhookUrlTest()
         {
             // TODO unit test for the property 'SlackWebhookUrl'
+        }
+        /// <summary>
+        /// Test the property 'Path'
+        /// </summary>
+        [Test]
+        public void PathTest()
+        {
+            // TODO unit test for the property 'Path'
         }
         /// <summary>
         /// Test the property 'PublicWebForm'
@@ -147,6 +163,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'Name'
         }
         /// <summary>
+        /// Test the property 'PermanentDocumentUrl'
+        /// </summary>
+        [Test]
+        public void PermanentDocumentUrlTest()
+        {
+            // TODO unit test for the property 'PermanentDocumentUrl'
+        }
+        /// <summary>
         /// Test the property 'TemplateType'
         /// </summary>
         [Test]
@@ -177,6 +201,14 @@ namespace FormApi.Client.Test
         public void RedirectUrlTest()
         {
             // TODO unit test for the property 'RedirectUrl'
+        }
+        /// <summary>
+        /// Test the property 'DocumentUrl'
+        /// </summary>
+        [Test]
+        public void DocumentUrlTest()
+        {
+            // TODO unit test for the property 'DocumentUrl'
         }
 
     }

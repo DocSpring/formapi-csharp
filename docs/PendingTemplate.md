@@ -5,10 +5,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExpirationInterval** | **string** |  | [optional] 
 **WebhookUrl** | **string** |  | [optional] 
+**ParentFolderId** | **string** |  | [optional] 
 **ExpireAfter** | **decimal?** |  | [optional] 
 **AllowAdditionalProperties** | **bool?** |  | [optional] 
 **PublicSubmissions** | **bool?** |  | [optional] 
 **SlackWebhookUrl** | **string** |  | [optional] 
+**Path** | **string** |  | [optional] 
 **PublicWebForm** | **bool?** |  | [optional] 
 **EditableSubmissions** | **bool?** |  | [optional] 
 **ExpireSubmissions** | **bool?** |  | [optional] 

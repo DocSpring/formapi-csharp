@@ -66,10 +66,12 @@ namespace FormApi.Client.Model
         /// </summary>
         /// <param name="expirationInterval">expirationInterval.</param>
         /// <param name="webhookUrl">webhookUrl.</param>
+        /// <param name="parentFolderId">parentFolderId.</param>
         /// <param name="expireAfter">expireAfter.</param>
         /// <param name="allowAdditionalProperties">allowAdditionalProperties.</param>
         /// <param name="publicSubmissions">publicSubmissions.</param>
         /// <param name="slackWebhookUrl">slackWebhookUrl.</param>
+        /// <param name="path">path.</param>
         /// <param name="publicWebForm">publicWebForm.</param>
         /// <param name="editableSubmissions">editableSubmissions.</param>
         /// <param name="expireSubmissions">expireSubmissions.</param>
@@ -77,14 +79,16 @@ namespace FormApi.Client.Model
         /// <param name="templateType">templateType.</param>
         /// <param name="id">id.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public PendingTemplate(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), bool? publicWebForm = default(bool?), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), string redirectUrl = default(string))
+        public PendingTemplate(ExpirationIntervalEnum? expirationInterval = default(ExpirationIntervalEnum?), string webhookUrl = default(string), string parentFolderId = default(string), decimal? expireAfter = default(decimal?), bool? allowAdditionalProperties = default(bool?), bool? publicSubmissions = default(bool?), string slackWebhookUrl = default(string), string path = default(string), bool? publicWebForm = default(bool?), bool? editableSubmissions = default(bool?), bool? expireSubmissions = default(bool?), string name = default(string), string templateType = default(string), string id = default(string), string redirectUrl = default(string))
         {
             this.ExpirationInterval = expirationInterval;
             this.WebhookUrl = webhookUrl;
+            this.ParentFolderId = parentFolderId;
             this.ExpireAfter = expireAfter;
             this.AllowAdditionalProperties = allowAdditionalProperties;
             this.PublicSubmissions = publicSubmissions;
             this.SlackWebhookUrl = slackWebhookUrl;
+            this.Path = path;
             this.PublicWebForm = publicWebForm;
             this.EditableSubmissions = editableSubmissions;
             this.ExpireSubmissions = expireSubmissions;
@@ -100,6 +104,12 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="webhook_url", EmitDefaultValue=false)]
         public string WebhookUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ParentFolderId
+        /// </summary>
+        [DataMember(Name="parent_folder_id", EmitDefaultValue=false)]
+        public string ParentFolderId { get; set; }
 
         /// <summary>
         /// Gets or Sets ExpireAfter
@@ -124,6 +134,12 @@ namespace FormApi.Client.Model
         /// </summary>
         [DataMember(Name="slack_webhook_url", EmitDefaultValue=false)]
         public string SlackWebhookUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Path
+        /// </summary>
+        [DataMember(Name="path", EmitDefaultValue=false)]
+        public string Path { get; set; }
 
         /// <summary>
         /// Gets or Sets PublicWebForm
@@ -177,10 +193,12 @@ namespace FormApi.Client.Model
             sb.Append("class PendingTemplate {\n");
             sb.Append("  ExpirationInterval: ").Append(ExpirationInterval).Append("\n");
             sb.Append("  WebhookUrl: ").Append(WebhookUrl).Append("\n");
+            sb.Append("  ParentFolderId: ").Append(ParentFolderId).Append("\n");
             sb.Append("  ExpireAfter: ").Append(ExpireAfter).Append("\n");
             sb.Append("  AllowAdditionalProperties: ").Append(AllowAdditionalProperties).Append("\n");
             sb.Append("  PublicSubmissions: ").Append(PublicSubmissions).Append("\n");
             sb.Append("  SlackWebhookUrl: ").Append(SlackWebhookUrl).Append("\n");
+            sb.Append("  Path: ").Append(Path).Append("\n");
             sb.Append("  PublicWebForm: ").Append(PublicWebForm).Append("\n");
             sb.Append("  EditableSubmissions: ").Append(EditableSubmissions).Append("\n");
             sb.Append("  ExpireSubmissions: ").Append(ExpireSubmissions).Append("\n");
@@ -233,6 +251,11 @@ namespace FormApi.Client.Model
                     this.WebhookUrl.Equals(input.WebhookUrl))
                 ) && 
                 (
+                    this.ParentFolderId == input.ParentFolderId ||
+                    (this.ParentFolderId != null &&
+                    this.ParentFolderId.Equals(input.ParentFolderId))
+                ) && 
+                (
                     this.ExpireAfter == input.ExpireAfter ||
                     (this.ExpireAfter != null &&
                     this.ExpireAfter.Equals(input.ExpireAfter))
@@ -251,6 +274,11 @@ namespace FormApi.Client.Model
                     this.SlackWebhookUrl == input.SlackWebhookUrl ||
                     (this.SlackWebhookUrl != null &&
                     this.SlackWebhookUrl.Equals(input.SlackWebhookUrl))
+                ) && 
+                (
+                    this.Path == input.Path ||
+                    (this.Path != null &&
+                    this.Path.Equals(input.Path))
                 ) && 
                 (
                     this.PublicWebForm == input.PublicWebForm ||
@@ -302,6 +330,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.ExpirationInterval.GetHashCode();
                 if (this.WebhookUrl != null)
                     hashCode = hashCode * 59 + this.WebhookUrl.GetHashCode();
+                if (this.ParentFolderId != null)
+                    hashCode = hashCode * 59 + this.ParentFolderId.GetHashCode();
                 if (this.ExpireAfter != null)
                     hashCode = hashCode * 59 + this.ExpireAfter.GetHashCode();
                 if (this.AllowAdditionalProperties != null)
@@ -310,6 +340,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.PublicSubmissions.GetHashCode();
                 if (this.SlackWebhookUrl != null)
                     hashCode = hashCode * 59 + this.SlackWebhookUrl.GetHashCode();
+                if (this.Path != null)
+                    hashCode = hashCode * 59 + this.Path.GetHashCode();
                 if (this.PublicWebForm != null)
                     hashCode = hashCode * 59 + this.PublicWebForm.GetHashCode();
                 if (this.EditableSubmissions != null)

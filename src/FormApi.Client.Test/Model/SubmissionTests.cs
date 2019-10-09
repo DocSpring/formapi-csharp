@@ -147,6 +147,14 @@ namespace FormApi.Client.Test
             // TODO unit test for the property 'DownloadUrl'
         }
         /// <summary>
+        /// Test the property 'PermanentDownloadUrl'
+        /// </summary>
+        [Test]
+        public void PermanentDownloadUrlTest()
+        {
+            // TODO unit test for the property 'PermanentDownloadUrl'
+        }
+        /// <summary>
         /// Test the property 'BatchId'
         /// </summary>
         [Test]

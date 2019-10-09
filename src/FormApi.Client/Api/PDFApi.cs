@@ -153,6 +153,27 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of CreateSubmissionDataRequestTokenResponse</returns>
         ApiResponse<CreateSubmissionDataRequestTokenResponse> CreateDataRequestTokenWithHttpInfo (string dataRequestId);
         /// <summary>
+        /// Create a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>Folder</returns>
+        Folder CreateFolder (CreateFolderData createFolderData);
+
+        /// <summary>
+        /// Create a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>ApiResponse of Folder</returns>
+        ApiResponse<Folder> CreateFolderWithHttpInfo (CreateFolderData createFolderData);
+        /// <summary>
         /// Upload a new PDF template with a file upload
         /// </summary>
         /// <remarks>
@@ -161,8 +182,9 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>PendingTemplate</returns>
-        PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName);
+        PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null);
 
         /// <summary>
         /// Upload a new PDF template with a file upload
@@ -173,8 +195,9 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>ApiResponse of PendingTemplate</returns>
-        ApiResponse<PendingTemplate> CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        ApiResponse<PendingTemplate> CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null);
         /// <summary>
         /// Create a new PDF template from a cached presign upload
         /// </summary>
@@ -196,6 +219,27 @@ namespace FormApi.Client.Api
         /// <param name="createTemplateData"></param>
         /// <returns>ApiResponse of PendingTemplate</returns>
         ApiResponse<PendingTemplate> CreateTemplateFromUploadWithHttpInfo (CreateTemplateData createTemplateData);
+        /// <summary>
+        /// Delete a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>Folder</returns>
+        Folder DeleteFolder (string folderId);
+
+        /// <summary>
+        /// Delete a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>ApiResponse of Folder</returns>
+        ApiResponse<Folder> DeleteFolderWithHttpInfo (string folderId);
         /// <summary>
         /// Expire a combined submission
         /// </summary>
@@ -369,7 +413,7 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of SubmissionBatch</returns>
         ApiResponse<SubmissionBatch> GetSubmissionBatchWithHttpInfo (string submissionBatchId, bool? includeSubmissions = null);
         /// <summary>
-        /// Check the status of an uploaded template
+        /// Get a single template
         /// </summary>
         /// <remarks>
         /// 
@@ -380,7 +424,7 @@ namespace FormApi.Client.Api
         Template GetTemplate (string templateId);
 
         /// <summary>
-        /// Check the status of an uploaded template
+        /// Get a single template
         /// </summary>
         /// <remarks>
         /// 
@@ -411,6 +455,27 @@ namespace FormApi.Client.Api
         /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
         ApiResponse<Dictionary<string, Object>> GetTemplateSchemaWithHttpInfo (string templateId);
         /// <summary>
+        /// Get a list of all folders
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>List&lt;Folder&gt;</returns>
+        List<Folder> ListFolders (string parentFolderId = null);
+
+        /// <summary>
+        /// Get a list of all folders
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>ApiResponse of List&lt;Folder&gt;</returns>
+        ApiResponse<List<Folder>> ListFoldersWithHttpInfo (string parentFolderId = null);
+        /// <summary>
         /// Get a list of all templates
         /// </summary>
         /// <remarks>
@@ -418,10 +483,11 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>List&lt;Template&gt;</returns>
-        List<Template> ListTemplates (string query = null, int? page = null, int? perPage = null);
+        List<Template> ListTemplates (string query = null, string parentFolderId = null, int? page = null, int? perPage = null);
 
         /// <summary>
         /// Get a list of all templates
@@ -431,10 +497,80 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>ApiResponse of List&lt;Template&gt;</returns>
-        ApiResponse<List<Template>> ListTemplatesWithHttpInfo (string query = null, int? page = null, int? perPage = null);
+        ApiResponse<List<Template>> ListTemplatesWithHttpInfo (string query = null, string parentFolderId = null, int? page = null, int? perPage = null);
+        /// <summary>
+        /// Move a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>Folder</returns>
+        Folder MoveFolderToFolder (string folderId, MoveFolderData moveFolderData);
+
+        /// <summary>
+        /// Move a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>ApiResponse of Folder</returns>
+        ApiResponse<Folder> MoveFolderToFolderWithHttpInfo (string folderId, MoveFolderData moveFolderData);
+        /// <summary>
+        /// Move Template to folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>Template</returns>
+        Template MoveTemplateToFolder (string templateId, MoveTemplateData moveTemplateData);
+
+        /// <summary>
+        /// Move Template to folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>ApiResponse of Template</returns>
+        ApiResponse<Template> MoveTemplateToFolderWithHttpInfo (string templateId, MoveTemplateData moveTemplateData);
+        /// <summary>
+        /// Rename a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns></returns>
+        void RenameFolder (string folderId, RenameFolderData renameFolderData);
+
+        /// <summary>
+        /// Rename a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> RenameFolderWithHttpInfo (string folderId, RenameFolderData renameFolderData);
         /// <summary>
         /// Test Authentication
         /// </summary>
@@ -608,6 +744,27 @@ namespace FormApi.Client.Api
         /// <returns>Task of ApiResponse (CreateSubmissionDataRequestTokenResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateSubmissionDataRequestTokenResponse>> CreateDataRequestTokenAsyncWithHttpInfo (string dataRequestId);
         /// <summary>
+        /// Create a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>Task of Folder</returns>
+        System.Threading.Tasks.Task<Folder> CreateFolderAsync (CreateFolderData createFolderData);
+
+        /// <summary>
+        /// Create a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>Task of ApiResponse (Folder)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Folder>> CreateFolderAsyncWithHttpInfo (CreateFolderData createFolderData);
+        /// <summary>
         /// Upload a new PDF template with a file upload
         /// </summary>
         /// <remarks>
@@ -616,8 +773,9 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>Task of PendingTemplate</returns>
-        System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName);
+        System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null);
 
         /// <summary>
         /// Upload a new PDF template with a file upload
@@ -628,8 +786,9 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>Task of ApiResponse (PendingTemplate)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName);
+        System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null);
         /// <summary>
         /// Create a new PDF template from a cached presign upload
         /// </summary>
@@ -651,6 +810,27 @@ namespace FormApi.Client.Api
         /// <param name="createTemplateData"></param>
         /// <returns>Task of ApiResponse (PendingTemplate)</returns>
         System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateFromUploadAsyncWithHttpInfo (CreateTemplateData createTemplateData);
+        /// <summary>
+        /// Delete a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>Task of Folder</returns>
+        System.Threading.Tasks.Task<Folder> DeleteFolderAsync (string folderId);
+
+        /// <summary>
+        /// Delete a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>Task of ApiResponse (Folder)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Folder>> DeleteFolderAsyncWithHttpInfo (string folderId);
         /// <summary>
         /// Expire a combined submission
         /// </summary>
@@ -824,7 +1004,7 @@ namespace FormApi.Client.Api
         /// <returns>Task of ApiResponse (SubmissionBatch)</returns>
         System.Threading.Tasks.Task<ApiResponse<SubmissionBatch>> GetSubmissionBatchAsyncWithHttpInfo (string submissionBatchId, bool? includeSubmissions = null);
         /// <summary>
-        /// Check the status of an uploaded template
+        /// Get a single template
         /// </summary>
         /// <remarks>
         /// 
@@ -835,7 +1015,7 @@ namespace FormApi.Client.Api
         System.Threading.Tasks.Task<Template> GetTemplateAsync (string templateId);
 
         /// <summary>
-        /// Check the status of an uploaded template
+        /// Get a single template
         /// </summary>
         /// <remarks>
         /// 
@@ -866,6 +1046,27 @@ namespace FormApi.Client.Api
         /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetTemplateSchemaAsyncWithHttpInfo (string templateId);
         /// <summary>
+        /// Get a list of all folders
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>Task of List&lt;Folder&gt;</returns>
+        System.Threading.Tasks.Task<List<Folder>> ListFoldersAsync (string parentFolderId = null);
+
+        /// <summary>
+        /// Get a list of all folders
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;Folder&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Folder>>> ListFoldersAsyncWithHttpInfo (string parentFolderId = null);
+        /// <summary>
         /// Get a list of all templates
         /// </summary>
         /// <remarks>
@@ -873,10 +1074,11 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of List&lt;Template&gt;</returns>
-        System.Threading.Tasks.Task<List<Template>> ListTemplatesAsync (string query = null, int? page = null, int? perPage = null);
+        System.Threading.Tasks.Task<List<Template>> ListTemplatesAsync (string query = null, string parentFolderId = null, int? page = null, int? perPage = null);
 
         /// <summary>
         /// Get a list of all templates
@@ -886,10 +1088,80 @@ namespace FormApi.Client.Api
         /// </remarks>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Template&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Template>>> ListTemplatesAsyncWithHttpInfo (string query = null, int? page = null, int? perPage = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Template>>> ListTemplatesAsyncWithHttpInfo (string query = null, string parentFolderId = null, int? page = null, int? perPage = null);
+        /// <summary>
+        /// Move a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>Task of Folder</returns>
+        System.Threading.Tasks.Task<Folder> MoveFolderToFolderAsync (string folderId, MoveFolderData moveFolderData);
+
+        /// <summary>
+        /// Move a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>Task of ApiResponse (Folder)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Folder>> MoveFolderToFolderAsyncWithHttpInfo (string folderId, MoveFolderData moveFolderData);
+        /// <summary>
+        /// Move Template to folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>Task of Template</returns>
+        System.Threading.Tasks.Task<Template> MoveTemplateToFolderAsync (string templateId, MoveTemplateData moveTemplateData);
+
+        /// <summary>
+        /// Move Template to folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>Task of ApiResponse (Template)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Template>> MoveTemplateToFolderAsyncWithHttpInfo (string templateId, MoveTemplateData moveTemplateData);
+        /// <summary>
+        /// Rename a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task RenameFolderAsync (string folderId, RenameFolderData renameFolderData);
+
+        /// <summary>
+        /// Rename a folder
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> RenameFolderAsyncWithHttpInfo (string folderId, RenameFolderData renameFolderData);
         /// <summary>
         /// Test Authentication
         /// </summary>
@@ -1995,15 +2267,177 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
+        /// Create a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>Folder</returns>
+        public Folder CreateFolder (CreateFolderData createFolderData)
+        {
+             ApiResponse<Folder> localVarResponse = CreateFolderWithHttpInfo(createFolderData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>ApiResponse of Folder</returns>
+        public ApiResponse< Folder > CreateFolderWithHttpInfo (CreateFolderData createFolderData)
+        {
+            // verify the required parameter 'createFolderData' is set
+            if (createFolderData == null)
+                throw new ApiException(400, "Missing required parameter 'createFolderData' when calling PDFApi->CreateFolder");
+
+            var localVarPath = "/folders/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (createFolderData != null && createFolderData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(createFolderData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createFolderData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Folder>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Folder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Folder)));
+        }
+
+        /// <summary>
+        /// Create a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>Task of Folder</returns>
+        public async System.Threading.Tasks.Task<Folder> CreateFolderAsync (CreateFolderData createFolderData)
+        {
+             ApiResponse<Folder> localVarResponse = await CreateFolderAsyncWithHttpInfo(createFolderData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createFolderData"></param>
+        /// <returns>Task of ApiResponse (Folder)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Folder>> CreateFolderAsyncWithHttpInfo (CreateFolderData createFolderData)
+        {
+            // verify the required parameter 'createFolderData' is set
+            if (createFolderData == null)
+                throw new ApiException(400, "Missing required parameter 'createFolderData' when calling PDFApi->CreateFolder");
+
+            var localVarPath = "/folders/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (createFolderData != null && createFolderData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(createFolderData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createFolderData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Folder>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Folder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Folder)));
+        }
+
+        /// <summary>
         /// Upload a new PDF template with a file upload 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>PendingTemplate</returns>
-        public PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName)
+        public PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null)
         {
-             ApiResponse<PendingTemplate> localVarResponse = CreateTemplateWithHttpInfo(templateDocument, templateName);
+             ApiResponse<PendingTemplate> localVarResponse = CreateTemplateWithHttpInfo(templateDocument, templateName, templateParentFolderId);
              return localVarResponse.Data;
         }
 
@@ -2013,8 +2447,9 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>ApiResponse of PendingTemplate</returns>
-        public ApiResponse< PendingTemplate > CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName)
+        public ApiResponse< PendingTemplate > CreateTemplateWithHttpInfo (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null)
         {
             // verify the required parameter 'templateDocument' is set
             if (templateDocument == null)
@@ -2047,6 +2482,7 @@ namespace FormApi.Client.Api
 
             if (templateDocument != null) localVarFileParams.Add("template[document]", this.Configuration.ApiClient.ParameterToFile("template[document]", templateDocument));
             if (templateName != null) localVarFormParams.Add("template[name]", this.Configuration.ApiClient.ParameterToString(templateName)); // form parameter
+            if (templateParentFolderId != null) localVarFormParams.Add("template[parent_folder_id]", this.Configuration.ApiClient.ParameterToString(templateParentFolderId)); // form parameter
 
             // authentication (api_token_basic) required
             // http basic authentication required
@@ -2079,10 +2515,11 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>Task of PendingTemplate</returns>
-        public async System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName)
+        public async System.Threading.Tasks.Task<PendingTemplate> CreateTemplateAsync (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null)
         {
-             ApiResponse<PendingTemplate> localVarResponse = await CreateTemplateAsyncWithHttpInfo(templateDocument, templateName);
+             ApiResponse<PendingTemplate> localVarResponse = await CreateTemplateAsyncWithHttpInfo(templateDocument, templateName, templateParentFolderId);
              return localVarResponse.Data;
 
         }
@@ -2093,8 +2530,9 @@ namespace FormApi.Client.Api
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateDocument"></param>
         /// <param name="templateName"></param>
+        /// <param name="templateParentFolderId"> (optional)</param>
         /// <returns>Task of ApiResponse (PendingTemplate)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName)
+        public async System.Threading.Tasks.Task<ApiResponse<PendingTemplate>> CreateTemplateAsyncWithHttpInfo (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null)
         {
             // verify the required parameter 'templateDocument' is set
             if (templateDocument == null)
@@ -2127,6 +2565,7 @@ namespace FormApi.Client.Api
 
             if (templateDocument != null) localVarFileParams.Add("template[document]", this.Configuration.ApiClient.ParameterToFile("template[document]", templateDocument));
             if (templateName != null) localVarFormParams.Add("template[name]", this.Configuration.ApiClient.ParameterToString(templateName)); // form parameter
+            if (templateParentFolderId != null) localVarFormParams.Add("template[parent_folder_id]", this.Configuration.ApiClient.ParameterToString(templateParentFolderId)); // form parameter
 
             // authentication (api_token_basic) required
             // http basic authentication required
@@ -2312,6 +2751,151 @@ namespace FormApi.Client.Api
             return new ApiResponse<PendingTemplate>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PendingTemplate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PendingTemplate)));
+        }
+
+        /// <summary>
+        /// Delete a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>Folder</returns>
+        public Folder DeleteFolder (string folderId)
+        {
+             ApiResponse<Folder> localVarResponse = DeleteFolderWithHttpInfo(folderId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>ApiResponse of Folder</returns>
+        public ApiResponse< Folder > DeleteFolderWithHttpInfo (string folderId)
+        {
+            // verify the required parameter 'folderId' is set
+            if (folderId == null)
+                throw new ApiException(400, "Missing required parameter 'folderId' when calling PDFApi->DeleteFolder");
+
+            var localVarPath = "/folders/{folder_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (folderId != null) localVarPathParams.Add("folder_id", this.Configuration.ApiClient.ParameterToString(folderId)); // path parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Folder>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Folder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Folder)));
+        }
+
+        /// <summary>
+        /// Delete a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>Task of Folder</returns>
+        public async System.Threading.Tasks.Task<Folder> DeleteFolderAsync (string folderId)
+        {
+             ApiResponse<Folder> localVarResponse = await DeleteFolderAsyncWithHttpInfo(folderId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Delete a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <returns>Task of ApiResponse (Folder)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Folder>> DeleteFolderAsyncWithHttpInfo (string folderId)
+        {
+            // verify the required parameter 'folderId' is set
+            if (folderId == null)
+                throw new ApiException(400, "Missing required parameter 'folderId' when calling PDFApi->DeleteFolder");
+
+            var localVarPath = "/folders/{folder_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (folderId != null) localVarPathParams.Add("folder_id", this.Configuration.ApiClient.ParameterToString(folderId)); // path parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Folder>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Folder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Folder)));
         }
 
         /// <summary>
@@ -3503,7 +4087,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Check the status of an uploaded template 
+        /// Get a single template 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
@@ -3515,7 +4099,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Check the status of an uploaded template 
+        /// Get a single template 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
@@ -3575,7 +4159,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Check the status of an uploaded template 
+        /// Get a single template 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
@@ -3588,7 +4172,7 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
-        /// Check the status of an uploaded template 
+        /// Get a single template 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId"></param>
@@ -3793,16 +4377,156 @@ namespace FormApi.Client.Api
         }
 
         /// <summary>
+        /// Get a list of all folders 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>List&lt;Folder&gt;</returns>
+        public List<Folder> ListFolders (string parentFolderId = null)
+        {
+             ApiResponse<List<Folder>> localVarResponse = ListFoldersWithHttpInfo(parentFolderId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a list of all folders 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>ApiResponse of List&lt;Folder&gt;</returns>
+        public ApiResponse< List<Folder> > ListFoldersWithHttpInfo (string parentFolderId = null)
+        {
+
+            var localVarPath = "/folders/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (parentFolderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "parent_folder_id", parentFolderId)); // query parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListFolders", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Folder>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<Folder>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Folder>)));
+        }
+
+        /// <summary>
+        /// Get a list of all folders 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>Task of List&lt;Folder&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Folder>> ListFoldersAsync (string parentFolderId = null)
+        {
+             ApiResponse<List<Folder>> localVarResponse = await ListFoldersAsyncWithHttpInfo(parentFolderId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get a list of all folders 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;Folder&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Folder>>> ListFoldersAsyncWithHttpInfo (string parentFolderId = null)
+        {
+
+            var localVarPath = "/folders/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (parentFolderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "parent_folder_id", parentFolderId)); // query parameter
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListFolders", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Folder>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<Folder>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Folder>)));
+        }
+
+        /// <summary>
         /// Get a list of all templates 
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>List&lt;Template&gt;</returns>
-        public List<Template> ListTemplates (string query = null, int? page = null, int? perPage = null)
+        public List<Template> ListTemplates (string query = null, string parentFolderId = null, int? page = null, int? perPage = null)
         {
-             ApiResponse<List<Template>> localVarResponse = ListTemplatesWithHttpInfo(query, page, perPage);
+             ApiResponse<List<Template>> localVarResponse = ListTemplatesWithHttpInfo(query, parentFolderId, page, perPage);
              return localVarResponse.Data;
         }
 
@@ -3811,10 +4535,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>ApiResponse of List&lt;Template&gt;</returns>
-        public ApiResponse< List<Template> > ListTemplatesWithHttpInfo (string query = null, int? page = null, int? perPage = null)
+        public ApiResponse< List<Template> > ListTemplatesWithHttpInfo (string query = null, string parentFolderId = null, int? page = null, int? perPage = null)
         {
 
             var localVarPath = "/templates";
@@ -3839,6 +4564,7 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (query != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "query", query)); // query parameter
+            if (parentFolderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "parent_folder_id", parentFolderId)); // query parameter
             if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (perPage != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
 
@@ -3872,12 +4598,13 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of List&lt;Template&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Template>> ListTemplatesAsync (string query = null, int? page = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<List<Template>> ListTemplatesAsync (string query = null, string parentFolderId = null, int? page = null, int? perPage = null)
         {
-             ApiResponse<List<Template>> localVarResponse = await ListTemplatesAsyncWithHttpInfo(query, page, perPage);
+             ApiResponse<List<Template>> localVarResponse = await ListTemplatesAsyncWithHttpInfo(query, parentFolderId, page, perPage);
              return localVarResponse.Data;
 
         }
@@ -3887,10 +4614,11 @@ namespace FormApi.Client.Api
         /// </summary>
         /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">Search By Name (optional)</param>
+        /// <param name="parentFolderId">Filter By Folder Id (optional)</param>
         /// <param name="page">Default: 1 (optional)</param>
         /// <param name="perPage">Default: 50 (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Template&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Template>>> ListTemplatesAsyncWithHttpInfo (string query = null, int? page = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Template>>> ListTemplatesAsyncWithHttpInfo (string query = null, string parentFolderId = null, int? page = null, int? perPage = null)
         {
 
             var localVarPath = "/templates";
@@ -3915,6 +4643,7 @@ namespace FormApi.Client.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (query != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "query", query)); // query parameter
+            if (parentFolderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "parent_folder_id", parentFolderId)); // query parameter
             if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (perPage != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
 
@@ -3941,6 +4670,523 @@ namespace FormApi.Client.Api
             return new ApiResponse<List<Template>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Template>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Template>)));
+        }
+
+        /// <summary>
+        /// Move a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>Folder</returns>
+        public Folder MoveFolderToFolder (string folderId, MoveFolderData moveFolderData)
+        {
+             ApiResponse<Folder> localVarResponse = MoveFolderToFolderWithHttpInfo(folderId, moveFolderData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Move a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>ApiResponse of Folder</returns>
+        public ApiResponse< Folder > MoveFolderToFolderWithHttpInfo (string folderId, MoveFolderData moveFolderData)
+        {
+            // verify the required parameter 'folderId' is set
+            if (folderId == null)
+                throw new ApiException(400, "Missing required parameter 'folderId' when calling PDFApi->MoveFolderToFolder");
+            // verify the required parameter 'moveFolderData' is set
+            if (moveFolderData == null)
+                throw new ApiException(400, "Missing required parameter 'moveFolderData' when calling PDFApi->MoveFolderToFolder");
+
+            var localVarPath = "/folders/{folder_id}/move";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (folderId != null) localVarPathParams.Add("folder_id", this.Configuration.ApiClient.ParameterToString(folderId)); // path parameter
+            if (moveFolderData != null && moveFolderData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(moveFolderData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = moveFolderData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("MoveFolderToFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Folder>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Folder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Folder)));
+        }
+
+        /// <summary>
+        /// Move a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>Task of Folder</returns>
+        public async System.Threading.Tasks.Task<Folder> MoveFolderToFolderAsync (string folderId, MoveFolderData moveFolderData)
+        {
+             ApiResponse<Folder> localVarResponse = await MoveFolderToFolderAsyncWithHttpInfo(folderId, moveFolderData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Move a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="moveFolderData"></param>
+        /// <returns>Task of ApiResponse (Folder)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Folder>> MoveFolderToFolderAsyncWithHttpInfo (string folderId, MoveFolderData moveFolderData)
+        {
+            // verify the required parameter 'folderId' is set
+            if (folderId == null)
+                throw new ApiException(400, "Missing required parameter 'folderId' when calling PDFApi->MoveFolderToFolder");
+            // verify the required parameter 'moveFolderData' is set
+            if (moveFolderData == null)
+                throw new ApiException(400, "Missing required parameter 'moveFolderData' when calling PDFApi->MoveFolderToFolder");
+
+            var localVarPath = "/folders/{folder_id}/move";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (folderId != null) localVarPathParams.Add("folder_id", this.Configuration.ApiClient.ParameterToString(folderId)); // path parameter
+            if (moveFolderData != null && moveFolderData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(moveFolderData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = moveFolderData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("MoveFolderToFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Folder>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Folder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Folder)));
+        }
+
+        /// <summary>
+        /// Move Template to folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>Template</returns>
+        public Template MoveTemplateToFolder (string templateId, MoveTemplateData moveTemplateData)
+        {
+             ApiResponse<Template> localVarResponse = MoveTemplateToFolderWithHttpInfo(templateId, moveTemplateData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Move Template to folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>ApiResponse of Template</returns>
+        public ApiResponse< Template > MoveTemplateToFolderWithHttpInfo (string templateId, MoveTemplateData moveTemplateData)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->MoveTemplateToFolder");
+            // verify the required parameter 'moveTemplateData' is set
+            if (moveTemplateData == null)
+                throw new ApiException(400, "Missing required parameter 'moveTemplateData' when calling PDFApi->MoveTemplateToFolder");
+
+            var localVarPath = "/templates/{template_id}/move";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
+            if (moveTemplateData != null && moveTemplateData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(moveTemplateData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = moveTemplateData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("MoveTemplateToFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Template>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Template) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template)));
+        }
+
+        /// <summary>
+        /// Move Template to folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>Task of Template</returns>
+        public async System.Threading.Tasks.Task<Template> MoveTemplateToFolderAsync (string templateId, MoveTemplateData moveTemplateData)
+        {
+             ApiResponse<Template> localVarResponse = await MoveTemplateToFolderAsyncWithHttpInfo(templateId, moveTemplateData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Move Template to folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId"></param>
+        /// <param name="moveTemplateData"></param>
+        /// <returns>Task of ApiResponse (Template)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Template>> MoveTemplateToFolderAsyncWithHttpInfo (string templateId, MoveTemplateData moveTemplateData)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new ApiException(400, "Missing required parameter 'templateId' when calling PDFApi->MoveTemplateToFolder");
+            // verify the required parameter 'moveTemplateData' is set
+            if (moveTemplateData == null)
+                throw new ApiException(400, "Missing required parameter 'moveTemplateData' when calling PDFApi->MoveTemplateToFolder");
+
+            var localVarPath = "/templates/{template_id}/move";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (templateId != null) localVarPathParams.Add("template_id", this.Configuration.ApiClient.ParameterToString(templateId)); // path parameter
+            if (moveTemplateData != null && moveTemplateData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(moveTemplateData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = moveTemplateData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("MoveTemplateToFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Template>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Template) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Template)));
+        }
+
+        /// <summary>
+        /// Rename a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns></returns>
+        public void RenameFolder (string folderId, RenameFolderData renameFolderData)
+        {
+             RenameFolderWithHttpInfo(folderId, renameFolderData);
+        }
+
+        /// <summary>
+        /// Rename a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> RenameFolderWithHttpInfo (string folderId, RenameFolderData renameFolderData)
+        {
+            // verify the required parameter 'folderId' is set
+            if (folderId == null)
+                throw new ApiException(400, "Missing required parameter 'folderId' when calling PDFApi->RenameFolder");
+            // verify the required parameter 'renameFolderData' is set
+            if (renameFolderData == null)
+                throw new ApiException(400, "Missing required parameter 'renameFolderData' when calling PDFApi->RenameFolder");
+
+            var localVarPath = "/folders/{folder_id}/rename";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (folderId != null) localVarPathParams.Add("folder_id", this.Configuration.ApiClient.ParameterToString(folderId)); // path parameter
+            if (renameFolderData != null && renameFolderData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(renameFolderData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = renameFolderData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RenameFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Rename a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task RenameFolderAsync (string folderId, RenameFolderData renameFolderData)
+        {
+             await RenameFolderAsyncWithHttpInfo(folderId, renameFolderData);
+
+        }
+
+        /// <summary>
+        /// Rename a folder 
+        /// </summary>
+        /// <exception cref="FormApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="folderId"></param>
+        /// <param name="renameFolderData"></param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> RenameFolderAsyncWithHttpInfo (string folderId, RenameFolderData renameFolderData)
+        {
+            // verify the required parameter 'folderId' is set
+            if (folderId == null)
+                throw new ApiException(400, "Missing required parameter 'folderId' when calling PDFApi->RenameFolder");
+            // verify the required parameter 'renameFolderData' is set
+            if (renameFolderData == null)
+                throw new ApiException(400, "Missing required parameter 'renameFolderData' when calling PDFApi->RenameFolder");
+
+            var localVarPath = "/folders/{folder_id}/rename";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (folderId != null) localVarPathParams.Add("folder_id", this.Configuration.ApiClient.ParameterToString(folderId)); // path parameter
+            if (renameFolderData != null && renameFolderData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(renameFolderData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = renameFolderData; // byte array
+            }
+
+            // authentication (api_token_basic) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
+            {
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RenameFolder", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>

@@ -378,7 +378,8 @@ namespace FormApi.Client.Test
         {
             int? page = 1;
             int? perPage = 10;
-            var response = instance.ListTemplates("API Client Test Template 2", page, perPage);
+            var response = instance.ListTemplates(
+              query: "API Client Test Template 2", page: page, perPage: perPage);
             Assert.IsInstanceOf<List<Template>> (response, "response is List<Template>");
             Assert.That(response, Has.Count.EqualTo(1));
             Assert.AreEqual("tpl_000000000000000002", response.First().Id);

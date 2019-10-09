@@ -138,6 +138,18 @@ namespace FormApi.Client.Test
         }
         
         /// <summary>
+        /// Test CreateFolder
+        /// </summary>
+        [Test]
+        public void CreateFolderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateFolderData createFolderData = null;
+            //var response = instance.CreateFolder(createFolderData);
+            //Assert.IsInstanceOf<Folder> (response, "response is Folder");
+        }
+        
+        /// <summary>
         /// Test CreateTemplate
         /// </summary>
         [Test]
@@ -146,7 +158,8 @@ namespace FormApi.Client.Test
             // TODO uncomment below to test the method and replace null with proper value
             //System.IO.Stream templateDocument = null;
             //string templateName = null;
-            //var response = instance.CreateTemplate(templateDocument, templateName);
+            //string templateParentFolderId = null;
+            //var response = instance.CreateTemplate(templateDocument, templateName, templateParentFolderId);
             //Assert.IsInstanceOf<PendingTemplate> (response, "response is PendingTemplate");
         }
         
@@ -160,6 +173,18 @@ namespace FormApi.Client.Test
             //CreateTemplateData createTemplateData = null;
             //var response = instance.CreateTemplateFromUpload(createTemplateData);
             //Assert.IsInstanceOf<PendingTemplate> (response, "response is PendingTemplate");
+        }
+        
+        /// <summary>
+        /// Test DeleteFolder
+        /// </summary>
+        [Test]
+        public void DeleteFolderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string folderId = null;
+            //var response = instance.DeleteFolder(folderId);
+            //Assert.IsInstanceOf<Folder> (response, "response is Folder");
         }
         
         /// <summary>
@@ -285,6 +310,18 @@ namespace FormApi.Client.Test
         }
         
         /// <summary>
+        /// Test ListFolders
+        /// </summary>
+        [Test]
+        public void ListFoldersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string parentFolderId = null;
+            //var response = instance.ListFolders(parentFolderId);
+            //Assert.IsInstanceOf<List<Folder>> (response, "response is List<Folder>");
+        }
+        
+        /// <summary>
         /// Test ListTemplates
         /// </summary>
         [Test]
@@ -292,10 +329,50 @@ namespace FormApi.Client.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string query = null;
+            //string parentFolderId = null;
             //int? page = null;
             //int? perPage = null;
-            //var response = instance.ListTemplates(query, page, perPage);
+            //var response = instance.ListTemplates(query, parentFolderId, page, perPage);
             //Assert.IsInstanceOf<List<Template>> (response, "response is List<Template>");
+        }
+        
+        /// <summary>
+        /// Test MoveFolderToFolder
+        /// </summary>
+        [Test]
+        public void MoveFolderToFolderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string folderId = null;
+            //MoveFolderData moveFolderData = null;
+            //var response = instance.MoveFolderToFolder(folderId, moveFolderData);
+            //Assert.IsInstanceOf<Folder> (response, "response is Folder");
+        }
+        
+        /// <summary>
+        /// Test MoveTemplateToFolder
+        /// </summary>
+        [Test]
+        public void MoveTemplateToFolderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string templateId = null;
+            //MoveTemplateData moveTemplateData = null;
+            //var response = instance.MoveTemplateToFolder(templateId, moveTemplateData);
+            //Assert.IsInstanceOf<Template> (response, "response is Template");
+        }
+        
+        /// <summary>
+        /// Test RenameFolder
+        /// </summary>
+        [Test]
+        public void RenameFolderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string folderId = null;
+            //RenameFolderData renameFolderData = null;
+            //instance.RenameFolder(folderId, renameFolderData);
+            
         }
         
         /// <summary>

@@ -10,8 +10,10 @@ Method | HTTP request | Description
 [**CombineSubmissions**](PDFApi.md#combinesubmissions) | **POST** /combined_submissions | Merge generated PDFs together
 [**CreateCustomFileFromUpload**](PDFApi.md#createcustomfilefromupload) | **POST** /custom_files | Create a new custom file from a cached presign upload
 [**CreateDataRequestToken**](PDFApi.md#createdatarequesttoken) | **POST** /data_requests/{data_request_id}/tokens | Creates a new data request token for form authentication
+[**CreateFolder**](PDFApi.md#createfolder) | **POST** /folders/ | Create a folder
 [**CreateTemplate**](PDFApi.md#createtemplate) | **POST** /templates | Upload a new PDF template with a file upload
 [**CreateTemplateFromUpload**](PDFApi.md#createtemplatefromupload) | **POST** /templates?v&#x3D;2 | Create a new PDF template from a cached presign upload
+[**DeleteFolder**](PDFApi.md#deletefolder) | **DELETE** /folders/{folder_id} | Delete a folder
 [**ExpireCombinedSubmission**](PDFApi.md#expirecombinedsubmission) | **DELETE** /combined_submissions/{combined_submission_id} | Expire a combined submission
 [**ExpireSubmission**](PDFApi.md#expiresubmission) | **DELETE** /submissions/{submission_id} | Expire a PDF submission
 [**GeneratePDF**](PDFApi.md#generatepdf) | **POST** /templates/{template_id}/submissions | Generates a new PDF
@@ -20,9 +22,13 @@ Method | HTTP request | Description
 [**GetPresignUrl**](PDFApi.md#getpresignurl) | **GET** /uploads/presign | Get a presigned URL so that you can upload a file to our AWS S3 bucket
 [**GetSubmission**](PDFApi.md#getsubmission) | **GET** /submissions/{submission_id} | Check the status of a PDF
 [**GetSubmissionBatch**](PDFApi.md#getsubmissionbatch) | **GET** /submissions/batches/{submission_batch_id} | Check the status of a submission batch job
-[**GetTemplate**](PDFApi.md#gettemplate) | **GET** /templates/{template_id} | Check the status of an uploaded template
+[**GetTemplate**](PDFApi.md#gettemplate) | **GET** /templates/{template_id} | Get a single template
 [**GetTemplateSchema**](PDFApi.md#gettemplateschema) | **GET** /templates/{template_id}/schema | Fetch the JSON schema for a template
+[**ListFolders**](PDFApi.md#listfolders) | **GET** /folders/ | Get a list of all folders
 [**ListTemplates**](PDFApi.md#listtemplates) | **GET** /templates | Get a list of all templates
+[**MoveFolderToFolder**](PDFApi.md#movefoldertofolder) | **POST** /folders/{folder_id}/move | Move a folder
+[**MoveTemplateToFolder**](PDFApi.md#movetemplatetofolder) | **POST** /templates/{template_id}/move | Move Template to folder
+[**RenameFolder**](PDFApi.md#renamefolder) | **POST** /folders/{folder_id}/rename | Rename a folder
 [**TestAuthentication**](PDFApi.md#testauthentication) | **GET** /authentication | Test Authentication
 [**UpdateDataRequest**](PDFApi.md#updatedatarequest) | **PUT** /data_requests/{data_request_id} | Update a submission data request
 
@@ -407,9 +413,72 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="createfolder"></a>
+# **CreateFolder**
+> Folder CreateFolder (CreateFolderData createFolderData)
+
+Create a folder
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class CreateFolderExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var createFolderData = new CreateFolderData(); // CreateFolderData | 
+
+            try
+            {
+                // Create a folder
+                Folder result = apiInstance.CreateFolder(createFolderData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.CreateFolder: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createFolderData** | [**CreateFolderData**](CreateFolderData.md)|  | 
+
+### Return type
+
+[**Folder**](Folder.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="createtemplate"></a>
 # **CreateTemplate**
-> PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName)
+> PendingTemplate CreateTemplate (System.IO.Stream templateDocument, string templateName, string templateParentFolderId = null)
 
 Upload a new PDF template with a file upload
 
@@ -434,11 +503,12 @@ namespace Example
             var apiInstance = new PDFApi();
             var templateDocument = BINARY_DATA_HERE;  // System.IO.Stream | 
             var templateName = templateName_example;  // string | 
+            var templateParentFolderId = templateParentFolderId_example;  // string |  (optional) 
 
             try
             {
                 // Upload a new PDF template with a file upload
-                PendingTemplate result = apiInstance.CreateTemplate(templateDocument, templateName);
+                PendingTemplate result = apiInstance.CreateTemplate(templateDocument, templateName, templateParentFolderId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -456,6 +526,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateDocument** | **System.IO.Stream**|  | 
  **templateName** | **string**|  | 
+ **templateParentFolderId** | **string**|  | [optional] 
 
 ### Return type
 
@@ -531,6 +602,69 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="deletefolder"></a>
+# **DeleteFolder**
+> Folder DeleteFolder (string folderId)
+
+Delete a folder
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class DeleteFolderExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var folderId = fld_000000000000000001;  // string | 
+
+            try
+            {
+                // Delete a folder
+                Folder result = apiInstance.DeleteFolder(folderId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.DeleteFolder: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **string**|  | 
+
+### Return type
+
+[**Folder**](Folder.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1045,7 +1179,7 @@ Name | Type | Description  | Notes
 # **GetTemplate**
 > Template GetTemplate (string templateId)
 
-Check the status of an uploaded template
+Get a single template
 
 ### Example
 ```csharp
@@ -1066,11 +1200,11 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new PDFApi();
-            var templateId = tpl_000000000000000001;  // string | 
+            var templateId = tpl_000000000000000011;  // string | 
 
             try
             {
-                // Check the status of an uploaded template
+                // Get a single template
                 Template result = apiInstance.GetTemplate(templateId);
                 Debug.WriteLine(result);
             }
@@ -1167,9 +1301,72 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listfolders"></a>
+# **ListFolders**
+> List<Folder> ListFolders (string parentFolderId = null)
+
+Get a list of all folders
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class ListFoldersExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var parentFolderId = fld_000000000000000002;  // string | Filter By Folder Id (optional) 
+
+            try
+            {
+                // Get a list of all folders
+                List&lt;Folder&gt; result = apiInstance.ListFolders(parentFolderId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.ListFolders: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **parentFolderId** | **string**| Filter By Folder Id | [optional] 
+
+### Return type
+
+[**List<Folder>**](Folder.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="listtemplates"></a>
 # **ListTemplates**
-> List<Template> ListTemplates (string query = null, int? page = null, int? perPage = null)
+> List<Template> ListTemplates (string query = null, string parentFolderId = null, int? page = null, int? perPage = null)
 
 Get a list of all templates
 
@@ -1193,13 +1390,14 @@ namespace Example
 
             var apiInstance = new PDFApi();
             var query = 2;  // string | Search By Name (optional) 
+            var parentFolderId = fld_000000000000000001;  // string | Filter By Folder Id (optional) 
             var page = 2;  // int? | Default: 1 (optional) 
             var perPage = 1;  // int? | Default: 50 (optional) 
 
             try
             {
                 // Get a list of all templates
-                List&lt;Template&gt; result = apiInstance.ListTemplates(query, page, perPage);
+                List&lt;Template&gt; result = apiInstance.ListTemplates(query, parentFolderId, page, perPage);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1216,6 +1414,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string**| Search By Name | [optional] 
+ **parentFolderId** | **string**| Filter By Folder Id | [optional] 
  **page** | **int?**| Default: 1 | [optional] 
  **perPage** | **int?**| Default: 50 | [optional] 
 
@@ -1230,6 +1429,200 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="movefoldertofolder"></a>
+# **MoveFolderToFolder**
+> Folder MoveFolderToFolder (string folderId, MoveFolderData moveFolderData)
+
+Move a folder
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class MoveFolderToFolderExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var folderId = fld_000000000000000001;  // string | 
+            var moveFolderData = new MoveFolderData(); // MoveFolderData | 
+
+            try
+            {
+                // Move a folder
+                Folder result = apiInstance.MoveFolderToFolder(folderId, moveFolderData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.MoveFolderToFolder: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **string**|  | 
+ **moveFolderData** | [**MoveFolderData**](MoveFolderData.md)|  | 
+
+### Return type
+
+[**Folder**](Folder.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="movetemplatetofolder"></a>
+# **MoveTemplateToFolder**
+> Template MoveTemplateToFolder (string templateId, MoveTemplateData moveTemplateData)
+
+Move Template to folder
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class MoveTemplateToFolderExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var templateId = tpl_000000000000000001;  // string | 
+            var moveTemplateData = new MoveTemplateData(); // MoveTemplateData | 
+
+            try
+            {
+                // Move Template to folder
+                Template result = apiInstance.MoveTemplateToFolder(templateId, moveTemplateData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.MoveTemplateToFolder: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **string**|  | 
+ **moveTemplateData** | [**MoveTemplateData**](MoveTemplateData.md)|  | 
+
+### Return type
+
+[**Template**](Template.md)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="renamefolder"></a>
+# **RenameFolder**
+> void RenameFolder (string folderId, RenameFolderData renameFolderData)
+
+Rename a folder
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using FormApi.Client.Api;
+using FormApi.Client.Client;
+using FormApi.Client.Model;
+
+namespace Example
+{
+    public class RenameFolderExample
+    {
+        public void main()
+        {
+            // Configure HTTP basic authorization: api_token_basic
+            Configuration.Default.Username = "YOUR_USERNAME";
+            Configuration.Default.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new PDFApi();
+            var folderId = fld_000000000000000001;  // string | 
+            var renameFolderData = new RenameFolderData(); // RenameFolderData | 
+
+            try
+            {
+                // Rename a folder
+                apiInstance.RenameFolder(folderId, renameFolderData);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PDFApi.RenameFolder: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **string**|  | 
+ **renameFolderData** | [**RenameFolderData**](RenameFolderData.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_token_basic](../README.md#api_token_basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

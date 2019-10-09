@@ -79,10 +79,10 @@ namespace FormApi.Client.Model
             Waitingfordatarequests = 7,
 
             /// <summary>
-            /// Enum Liquidsyntaxerror for value: liquid_syntax_error
+            /// Enum Syntaxerror for value: syntax_error
             /// </summary>
-            [EnumMember(Value = "liquid_syntax_error")]
-            Liquidsyntaxerror = 8,
+            [EnumMember(Value = "syntax_error")]
+            Syntaxerror = 8,
 
             /// <summary>
             /// Enum Accountsuspended for value: account_suspended
@@ -121,10 +121,11 @@ namespace FormApi.Client.Model
         /// <param name="state">state (required).</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="downloadUrl">downloadUrl.</param>
+        /// <param name="permanentDownloadUrl">permanentDownloadUrl.</param>
         /// <param name="batchId">batchId.</param>
         /// <param name="dataRequests">dataRequests.</param>
         /// <param name="actions">actions.</param>
-        public Submission(string id = default(string), string templateId = default(string), bool? test = default(bool?), bool? editable = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
+        public Submission(string id = default(string), string templateId = default(string), bool? test = default(bool?), bool? editable = default(bool?), bool? expired = default(bool?), string expiresAt = default(string), string processedAt = default(string), StateEnum state = default(StateEnum), Object metadata = default(Object), string downloadUrl = default(string), string permanentDownloadUrl = default(string), string batchId = default(string), List<SubmissionDataRequest> dataRequests = default(List<SubmissionDataRequest>), List<SubmissionAction> actions = default(List<SubmissionAction>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -168,6 +169,7 @@ namespace FormApi.Client.Model
             this.ProcessedAt = processedAt;
             this.Metadata = metadata;
             this.DownloadUrl = downloadUrl;
+            this.PermanentDownloadUrl = permanentDownloadUrl;
             this.BatchId = batchId;
             this.DataRequests = dataRequests;
             this.Actions = actions;
@@ -229,6 +231,12 @@ namespace FormApi.Client.Model
         public string DownloadUrl { get; set; }
 
         /// <summary>
+        /// Gets or Sets PermanentDownloadUrl
+        /// </summary>
+        [DataMember(Name="permanent_download_url", EmitDefaultValue=false)]
+        public string PermanentDownloadUrl { get; set; }
+
+        /// <summary>
         /// Gets or Sets BatchId
         /// </summary>
         [DataMember(Name="batch_id", EmitDefaultValue=false)]
@@ -264,6 +272,7 @@ namespace FormApi.Client.Model
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  DownloadUrl: ").Append(DownloadUrl).Append("\n");
+            sb.Append("  PermanentDownloadUrl: ").Append(PermanentDownloadUrl).Append("\n");
             sb.Append("  BatchId: ").Append(BatchId).Append("\n");
             sb.Append("  DataRequests: ").Append(DataRequests).Append("\n");
             sb.Append("  Actions: ").Append(Actions).Append("\n");
@@ -352,6 +361,11 @@ namespace FormApi.Client.Model
                     this.DownloadUrl.Equals(input.DownloadUrl))
                 ) && 
                 (
+                    this.PermanentDownloadUrl == input.PermanentDownloadUrl ||
+                    (this.PermanentDownloadUrl != null &&
+                    this.PermanentDownloadUrl.Equals(input.PermanentDownloadUrl))
+                ) && 
+                (
                     this.BatchId == input.BatchId ||
                     (this.BatchId != null &&
                     this.BatchId.Equals(input.BatchId))
@@ -397,6 +411,8 @@ namespace FormApi.Client.Model
                     hashCode = hashCode * 59 + this.Metadata.GetHashCode();
                 if (this.DownloadUrl != null)
                     hashCode = hashCode * 59 + this.DownloadUrl.GetHashCode();
+                if (this.PermanentDownloadUrl != null)
+                    hashCode = hashCode * 59 + this.PermanentDownloadUrl.GetHashCode();
                 if (this.BatchId != null)
                     hashCode = hashCode * 59 + this.BatchId.GetHashCode();
                 if (this.DataRequests != null)
